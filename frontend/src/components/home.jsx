@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router";
+
 export const Home = () => {
+  const navigate = useNavigate();
+
+  const Click=()=>{
+    navigate("/signup")
+  }
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-gray-900 via-black to-gray-950">
     {/* // navbar */}
@@ -8,7 +15,7 @@ export const Home = () => {
           <p className="p-2  cursor-pointer border border-transparent hover:rounded-full  hover:border-yellow-600 hover:text-yellow-600">Dashboard</p>
           <p className="p-2 cursor-pointer border border-transparent hover:rounded-full  hover:border-yellow-600 hover:text-yellow-600">Contact</p>
         </div>
-        <button  className="mr-8 bg-white w-20 h-7  text-black rounded-md ">
+        <button  className="mr-8 bg-white w-20 h-7 text-black rounded-md " onClick={Click}>
         <p className="text-center" >login</p>
         </button>
       </div>
