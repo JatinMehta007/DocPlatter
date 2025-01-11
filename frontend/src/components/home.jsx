@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router";
+import { BackgroundBeamsWithCollisionDemo } from "./background";
+import { BackgroundBeamsWithCollision } from "../ui/beams";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -9,6 +11,7 @@ export const Home = () => {
   return (
     <div className="w-screen h-screen bg-gradient-to-r from-gray-900 via-black to-gray-950">
     {/* // navbar */}
+      <BackgroundBeamsWithCollision>
       <div className="flex justify-between text-white p-4 font-semibold ">
         <p className="pl-10">Heliverse Hospital</p>
         <div className="flex gap-10 border-transparent">
@@ -21,9 +24,10 @@ export const Home = () => {
       </div>
 
      {/* welcome to heliverse */}
-      <div className="text-white pt-40">
+            <div className="text-white pt-40">
+
         <p className="text-7xl font-black text-center">
-       Welcome to Heliverse Hospital 
+       Welcome to <span className="text-yellow-600">Heliverse Hospital</span> 
         </p>
         <p className="text-3xl font-medium pt-5 text-center ">
             Streamlining Your Healthcare Operations for Better Patient Care
@@ -39,6 +43,8 @@ export const Home = () => {
             Contact us
         </button>
       </div>
+      </BackgroundBeamsWithCollision>
+  
     </div>
   );
 };
