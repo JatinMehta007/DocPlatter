@@ -20,7 +20,6 @@ model Patients{
     allergies            String  
     room_number          String
     bed_number           String
-    floor_number         String
     age                  String
     gender               String
     contact_information  String 
