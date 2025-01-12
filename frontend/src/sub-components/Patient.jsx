@@ -4,6 +4,7 @@ import axios  from "axios";
 export const Patient = () => {
   const [showMeal, setShowMeal] = useState(false); 
   const [patients, setPatients] = useState([]);
+  const [selectedPatientName, setSelectedPatientName] =useState("");
 
   useEffect(()=>{
     const fetchPatients = async ()=>{
@@ -18,6 +19,11 @@ export const Patient = () => {
 
     fetchPatients();
   },[])
+
+  const PatientClick = (patientName)=>{
+    setSelectedPatientName(patientName);
+    setShowMeal(true);
+  }
   return (
     <div>
       {!showMeal && ( 
@@ -31,14 +37,15 @@ export const Patient = () => {
           
           
           { patients.map((patient,index) => (
-              <div key={index} onClick={() => setShowMeal(true)} >
+              <div key={index} onClick={() => PatientClick(patient.username)} >
                 <div
                   className="grid grid-flow-col mt-9 group cursor-pointer"
                   style={{ gridTemplateColumns: "1% 98%" }}
                 >
                   <div className="group-hover:bg-yellow-600 bg-zinc-800 w-[10px] h-14 pl-0"></div>
                   <div className="w-full flex flex-row">
-                    <p className="pl-10 h-14 w-full bg-zinc-800 text-zinc-400 text-sm">
+                    <p className="pl-10 h-14 w-full  uppercase font-bold bg-zinc-800 text-zinc-200 text-sm ">
+                      <p className="normal-case font-light pb-1">Patient Name</p>
                       {patient.username} {/* Display the patient's name */}
                     </p>
                     <p className="ml-20 text-zinc-400 p-2 font-semibold text-sm bg-zinc-800 cursor-pointer hover:text-white">
@@ -54,7 +61,7 @@ export const Patient = () => {
 
       {showMeal && ( 
         <div className="p-4">
-          <Meal />
+          <Meal patientName={selectedPatientName} />
         </div>
       )}
     </div>
