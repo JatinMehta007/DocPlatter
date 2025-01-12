@@ -58,4 +58,39 @@ router.get('/patients', async(req,res)=>{
      }
 })
 
+router.post("/meals",async (req,res)=>{
+     const {patientName,morningMeal,eveningMeal,nightMeal,ingredients,instruction} = req.body;
+
+     try{
+        const patient = await prisma.patients.findUnique({
+            where : {username:patientName},
+        });
+        if(patient){
+            const meal = await prisma.patient_Diet.create({
+                data:{
+                    morning_meal:morningMeal,
+                    evening_meal:eveningMeal,
+                    night_meal:nightMeal,
+                    ingredients,
+                    instruction,
+                    patientId:patient.id,
+                },
+            })
+            res.status(200).send({
+                message  : "Meal data added successfullt",
+                meal
+            })
+        } else{
+            res.status(404).send({
+                messsage:"Patient not found"
+            })
+        }
+     } catch(error){
+        console.log("error adding meal data:", error);
+        res.status(500).send({
+            message:"server error"
+        })
+     }
+})
+
 module.exports = router;
