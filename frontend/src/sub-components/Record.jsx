@@ -88,7 +88,7 @@ export const Record=()=>{
               <p className="mt-5">Bed Number</p>
               <input
                 type="text"
-                placeholder="patient name"
+                placeholder="Bed name"
                 className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
                 value={bedNumber}
                 onChange={(e)=>setBedNumber(e.target.value)}

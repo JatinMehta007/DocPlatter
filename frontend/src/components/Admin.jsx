@@ -2,13 +2,17 @@ import { Patient } from "../sub-components/Patient";
 import { Record } from "../sub-components/Record";
 import { useState } from "react";
 import crown from "../image/crown.webp"
+import { useNavigate } from "react-router";
 export const Admin = () => {
   const [activePanel, setActivePanel] = useState("admin");
-
+const navigate = useNavigate();
+  const Home=()=>{
+    navigate("/");
+  }
   return (
     <div className="h-full bg-gradient-to-r from-zinc-900 to-zinc-950 ">
         <div className="flex justify-between">
-      <p className="text-white p-4 font-semibold pl-10  text-2xl">HELIVERSE</p>
+      <p className="text-white p-4 font-semibold pl-10  text-2xl cursor-pointer" onClick={Home}>HELIVERSE</p>
       <img src={crown} alt="" className="h-6 mt-5 mr-7 cursor-pointer" />
         </div>
       <hr className="border-zinc-700" />

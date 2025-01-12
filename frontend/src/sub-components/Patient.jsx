@@ -36,7 +36,11 @@ export const Patient = () => {
           </div>
           
           
-          { patients.map((patient,index) => (
+          {patients.length === 0 ?(
+            <p className="text-center text-gray-400 mt-10">No records found</p>
+          ) :(
+
+            patients.map((patient,index) => (
               <div key={index} onClick={() => PatientClick(patient.username)} >
                 <div
                   className="grid grid-flow-col mt-9 group cursor-pointer"
@@ -55,6 +59,7 @@ export const Patient = () => {
                 </div>
               </div>
             ))
+            )
           }
         </div>
       )}
