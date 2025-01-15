@@ -8,6 +8,7 @@ import { Signup } from "./components/signup"
 import { Admin } from "./components/Admin"
 import { Patient } from "./sub-components/Patient"
 import { Record } from "./sub-components/Record"
+import { MealDetails } from "./sub-components/MealDetails"
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/admin" element={<Admin/>}></Route>
         <Route path="/patient" element={<Patient/>}></Route>
         <Route path="/record" element={<Record/>}></Route>
+        <Route path="/mealdetails" element={<MealDetails/>}></Route>
       </Routes>
       </BrowserRouter>
     </>

@@ -4,6 +4,8 @@ import { Record } from "../sub-components/Record";
 import { useState } from "react";
 import crown from "../image/crown.webp";
 import { useNavigate } from "react-router";
+
+
 export const Admin = () => {
   const [activePanel, setActivePanel] = useState("admin");
   const navigate = useNavigate();
@@ -106,9 +108,9 @@ export const Admin = () => {
             {/* Patient meal details */}
             <div
               className={`flex  mt-10  w-full h-10  items-center cursor-pointer ${
-                activePanel === "MealDetails" ? "bg-zinc-800" : "hover:bg-zinc-800"
+                activePanel === "mealdetails" ? "bg-zinc-800" : "hover:bg-zinc-800"
               }`}
-              onClick={() => setActivePanel("MealDetails")}
+              onClick={() => setActivePanel("mealdetails")}
             >
               <div
                 className="grid grid-flow-col "
@@ -147,6 +149,7 @@ export const Admin = () => {
         <div className="p-4">
           {activePanel === "admin" && <Record />}
           {activePanel === "patient" && <Patient />}
+          {activePanel === "mealdetails" && <MealDetails />}
         </div>
       </div>
       <hr />
