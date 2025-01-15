@@ -1,4 +1,5 @@
 import { Patient } from "../sub-components/Patient";
+import { MealDetails } from "../sub-components/MealDetails";
 import { Record } from "../sub-components/Record";
 import { useState } from "react";
 import crown from "../image/crown.webp";
@@ -105,9 +106,9 @@ export const Admin = () => {
             {/* Patient meal details */}
             <div
               className={`flex  mt-10  w-full h-10  items-center cursor-pointer ${
-                activePanel === "patient" ? "bg-zinc-800" : "hover:bg-zinc-800"
+                activePanel === "MealDetails" ? "bg-zinc-800" : "hover:bg-zinc-800"
               }`}
-              onClick={() => setActivePanel("patient")}
+              onClick={() => setActivePanel("MealDetails")}
             >
               <div
                 className="grid grid-flow-col "
