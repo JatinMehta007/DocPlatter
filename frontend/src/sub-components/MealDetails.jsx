@@ -10,7 +10,7 @@ export const MealDetails = () => {
             </p>
             <hr className="border-gray-600" />
           </div>
-          
+    
           
             <p className="text-center text-gray-400 mt-10">No records found</p>
          </div> 

@@ -6,12 +6,10 @@ const prisma = new PrismaClient();
 
 const router = express.Router();
 
-// POST: Insert patient data and create JWT token
 router.post("/insert", async (req, res) => {
     try {
         const { username, diseases, allergies, room_number, bed_number, floor_number, age, gender, contact_information } = req.body;
 
-        // Validate required fields
         if (!username || !diseases || !age || !gender) {
             return res.status(400).json({ message: "Missing required fields" });
         }
@@ -30,7 +28,7 @@ router.post("/insert", async (req, res) => {
             }
         });
 
-        const token = jwt.sign({ userId: user.id }, JWT_SECRET); // Sign only user ID or minimal data
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET); 
 
         res.status(201).json({
             message: "User created successfully",
@@ -93,4 +91,56 @@ router.post("/meals",async (req,res)=>{
      }
 })
 
-module.exports = router;
+
+
+
+router.get("/mealdetails", async (req, res) => {
+    try {
+      const patients = await prisma.patients.findMany({
+        select: {
+          username: true,
+          id: true,
+        },
+      });
+  
+      if (patients.length > 0) {
+        const mealDetailsPromises = patients.map(async (patient) => {
+          const mealDetails = await prisma.patient_Diet.findMany({
+            where: {
+              patientId: patient.id,
+            },
+            select: {
+              morning_meal: true,
+              evening_meal: true,
+              night_meal: true,
+              ingredients: true,
+              instruction: true,
+            },
+          });
+          return {
+            patientName: patient.username,
+            mealDetails,
+          };
+        });
+  
+        const mealDetailsResults = await Promise.all(mealDetailsPromises);
+  
+        res.status(200).send({
+          message: "Meal details fetched successfully",
+          mealDetails: mealDetailsResults,
+        });
+      } else {
+        res.status(404).send({
+          message: "No patients found",
+        });
+      }
+    } catch (error) {
+      console.log("Error fetching meal data:", error);
+      res.status(500).send({
+        message: "Server error",
+      });
+    }
+  });
+
+
+  module.exports = router;
