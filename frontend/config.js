@@ -1,1 +1,1 @@
-export const BACKEND_URL ="http://localhost:3000"
+export const BACKEND_URL ="https://vercel.com/jatins-projects-a1a570d0/heliverse-jatin-backend/78fKjwjL5wVfkSEjafXNEzYfZNUs"
