@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Meal } from "./Meal";
 import axios  from "axios";
+import { BACKEND_URL } from "../../config";
 
 
 export const Patient = () => {
@@ -11,7 +12,7 @@ export const Patient = () => {
   useEffect(()=>{
     const fetchPatients = async ()=>{
       try{
-        const response = await axios.get("http://localhost:3000/api/v1/user/patients");
+        const response = await axios.get(`${BACKEND_URL}/api/v1/user/patients`);
         console.log("Fetched patients:", response.data);
         setPatients(response.data);
       } catch(error){

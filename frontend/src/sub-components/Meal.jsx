@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react"
+import { BACKEND_URL } from "../../config";
 
 export const Meal=({patientName})=>{
   const [morningMeal , setMorningMeal] = useState("");
@@ -18,7 +19,7 @@ export const Meal=({patientName})=>{
       instruction
     }
     try{
-      const response = await axios.post("http://localhost:3000/api/v1/user/meals",mealData);
+      const response = await axios.post(`${BACKEND_URL}/api/v1/user/meals`,mealData);
         console.log("Meal data added", response.data);
         alert(`Meal record added for ${patientName}`);
     } catch (error){

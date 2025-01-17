@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Admin } from "../components/Admin"
 import  axios  from "axios"
+import { BACKEND_URL } from "../../config";
 
 export const Record=()=>{
 
@@ -26,7 +27,7 @@ export const Record=()=>{
     };
 
     try{
-      const response = await axios.post("http://localhost:3000/api/v1/user/insert",newRecord,{
+      const response = await axios.post(`${BACKEND_URL}/api/v1/user/insert`,newRecord,{
         headers:{
           "Content-Type":"application/json",
         },
@@ -79,7 +80,7 @@ export const Record=()=>{
               <p className="mt-5">Room Number</p>
               <input
                 type="text"
-                placeholder="patient name"
+                placeholder="Room number"
                 className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
                 value={roomNumber}
                 onChange={(e)=>setRoomNumber(e.target.value)}
