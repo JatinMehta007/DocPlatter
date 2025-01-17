@@ -1,1 +1,1 @@
-export const BACKEND_URL ="https://heliverse-jatin-backend.vercel.app/"
+export const BACKEND_URL ="https://heliverse-jatin-backend.vercel.app"
