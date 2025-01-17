@@ -2,14 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type":"module",
+  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "index": "nodemon index.js"
   },
   "keywords": [],
-  "author": "Jatin Mehta",
+  "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
