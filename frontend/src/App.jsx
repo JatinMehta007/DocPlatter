@@ -9,6 +9,7 @@ import { Admin } from "./components/Admin"
 import { Patient } from "./sub-components/Patient"
 import { Record } from "./sub-components/Record"
 import { MealDetails } from "./sub-components/MealDetails"
+import { FullDetails } from "./sub-components/FullDetails"
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/patient" element={<Patient/>}></Route>
         <Route path="/record" element={<Record/>}></Route>
         <Route path="/mealdetails" element={<MealDetails/>}></Route>
+        <Route path="/full" element={<FullDetails/>}></Route>
       </Routes>
       </BrowserRouter>
     </>
