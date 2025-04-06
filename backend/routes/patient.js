@@ -75,7 +75,7 @@ router.post("/meals",async (req,res)=>{
                 },
             })
             res.status(200).send({
-                message  : "Meal data added successfullt",
+                message  : "Meal data added successfully",
                 meal
             })
         } else{
@@ -142,5 +142,6 @@ router.get("/mealdetails", async (req, res) => {
     }
   });
 
+  
 
   module.exports = router;
