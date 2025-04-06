@@ -2,15 +2,15 @@ import { Patient } from "../sub-components/Patient";
 import { MealDetails } from "../sub-components/MealDetails";
 import { Record } from "../sub-components/Record";
 import { useState } from "react";
-import crown from "../image/crown.webp";
 import { useNavigate } from "react-router";
+import { Dropdown } from "../sub-components/Dropdown";
 
 
 export const Admin = () => {
   const [activePanel, setActivePanel] = useState("admin");
   const navigate = useNavigate();
   const Home = () => {
-    navigate("/");
+    navigate("/admin");
   };
   return (
     <div className="h-full bg-gradient-to-r from-zinc-900 to-zinc-950 ">
@@ -21,7 +21,7 @@ export const Admin = () => {
         >
           HELIVERSE
         </p>
-        <img src={crown} alt="" className="h-6 mt-5 mr-7 cursor-pointer" />
+        <Dropdown/>
       </div>
       <hr className="border-zinc-700" />
 
