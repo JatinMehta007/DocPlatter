@@ -1,27 +1,12 @@
 import { useEffect, useState } from "react";
 import { Meal } from "./Meal";
-import axios  from "axios";
-import { BACKEND_URL } from "../../config";
-
+import { Skeleton } from "../components/skeleton/skeleton";
+import { useFetchPatient } from "../hooks/useFetchPatient";
 
 export const Patient = () => {
   const [showMeal, setShowMeal] = useState(false); 
-  const [patients, setPatients] = useState([]);
   const [selectedPatientName, setSelectedPatientName] =useState("");
-
-  useEffect(()=>{
-    const fetchPatients = async ()=>{
-      try{
-        const response = await axios.get(`${BACKEND_URL}/api/v1/user/patients`);
-        console.log("Fetched patients:", response.data);
-        setPatients(response.data);
-      } catch(error){
-        console.log("error fetching patient data",error);
-      }
-    }
-
-    fetchPatients();
-  },[])
+  const {  patients,loading  } = useFetchPatient();
 
   const PatientClick = (patientName)=>{
     setSelectedPatientName(patientName);
@@ -38,8 +23,17 @@ export const Patient = () => {
             <hr className="border-gray-600" />
           </div>
           
-          
-          {patients.length === 0 ?(
+          { loading ? (
+            <>
+            <Skeleton/>
+            <Skeleton/>
+            <Skeleton/>
+            <Skeleton/>
+            <Skeleton/>
+            <Skeleton/>
+            <Skeleton/>
+            </>
+          ) : patients.length === 0 ?(
             <p className="text-center text-gray-400 mt-10">No records found</p>
           ) :(
 
