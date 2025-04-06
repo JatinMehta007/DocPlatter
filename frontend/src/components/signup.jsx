@@ -10,7 +10,7 @@ export const Signup=()=>{
     const navigate = useNavigate();
 
     const Signup=()=>{
-        if(username==="hospital_manager@xyz.com" && password==="Password@2025"){
+        if(username==="manager@xyz.com" && password==="Password@2025"){
             navigate("/admin");
         } else{
             setError("Invalid username or password");
