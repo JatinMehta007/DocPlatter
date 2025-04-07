@@ -12,6 +12,7 @@ export const Patient = () => {
     setSelectedPatientName(patientName);
     setShowMeal(true);
   }
+  
   return (
     <div>
       {!showMeal && ( 
