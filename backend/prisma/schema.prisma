@@ -32,8 +32,9 @@ model Patient_Diet{
     morning_meal    String
     evening_meal    String
     night_meal      String
-    ingredients     String
+    ingredients     String?
     instruction     String
+    date            String?
     patient         Patients @relation(fields: [patientId], references: [id])
     patientId       Int  
 }
