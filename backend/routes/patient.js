@@ -57,7 +57,7 @@ router.get('/patients', async(req,res)=>{
 })
 
 router.post("/meals",async (req,res)=>{
-     const {patientName,morningMeal,eveningMeal,nightMeal,ingredients,instruction} = req.body;
+     const {patientName,morningMeal,eveningMeal,nightMeal,ingredients,instruction,date} = req.body;
 
      try{
         const patient = await prisma.patients.findUnique({
@@ -71,6 +71,7 @@ router.post("/meals",async (req,res)=>{
                     night_meal:nightMeal,
                     ingredients,
                     instruction,
+                    date:date,
                     patientId:patient.id,
                 },
             })
@@ -94,6 +95,114 @@ router.post("/meals",async (req,res)=>{
 
 
 
+// router.get("/mealdetails", async (req, res) => {
+//     try {
+//       const patients = await prisma.patients.findMany({
+//         select: {
+//           username: true,
+//           id: true,
+//         },
+//       });
+  
+//       if (patients.length > 0) {
+//         const mealDetailsPromises = patients.map(async (patient) => {
+//           const mealDetails = await prisma.patient_Diet.findMany({
+//             where: {
+//               patientId: patient.id,
+//             },
+//             select: {
+//               morning_meal: true,
+//               evening_meal: true,
+//               night_meal: true,
+//               ingredients: true,
+//               instruction: true,
+//             },
+//           });
+//           return {
+//             patientName: patient.username,
+//             mealDetails,
+//           };
+//         });
+  
+//         const mealDetailsResults = await Promise.all(mealDetailsPromises);
+  
+//         res.status(200).send({
+//           message: "Meal details fetched successfully",
+//           mealDetails: mealDetailsResults,
+//         });
+//       } else {
+//         res.status(404).send({
+//           message: "No patients found",
+//         });
+//       }
+//     } catch (error) {
+//       console.log("Error fetching meal data:", error);
+//       res.status(500).send({
+//         message: "Server error",
+//       });
+//     }
+//   });
+
+// router.get("/mealdetails", async (req, res) => {
+//     try {
+//       const patients = await prisma.patients.findMany({
+//         select: {
+//           username: true,
+//           id: true,
+//         },
+//       });
+  
+//       if (patients.length > 0) {
+//         const mealDetailsPromises = patients.map(async (patient) => {
+//           const mealDetails = await prisma.patient_Diet.findMany({
+//             where: {
+//               patientId: patient.id,
+//             },
+//             select: {
+//               morning_meal: true,
+//               evening_meal: true,
+//               night_meal: true,
+//               ingredients: true,
+//               instruction: true,
+//             },
+//           });
+  
+//           if (mealDetails.length > 0) {
+//             return {
+//               patientName: patient.username,
+//               mealDetails,
+//             };
+//           } else {
+//             return null; // ❌ no meal, don't include
+//           }
+//         });
+  
+//         const allResults = await Promise.all(mealDetailsPromises);
+//         const filteredResults = allResults.filter((item) => item !== null); // ✅ only users with meals
+  
+//         if (filteredResults.length > 0) {
+//           res.status(200).send({
+//             message: "Meal details fetched successfully",
+//             mealDetails: filteredResults,
+//           });
+//         } else {
+//           res.status(404).send({
+//             message: "No patients with meals found",
+//           });
+//         }
+//       } else {
+//         res.status(404).send({
+//           message: "No patients found",
+//         });
+//       }
+//     } catch (error) {
+//       console.log("Error fetching meal data:", error);
+//       res.status(500).send({
+//         message: "Server error",
+//       });
+//     }
+//   });
+
 router.get("/mealdetails", async (req, res) => {
     try {
       const patients = await prisma.patients.findMany({
@@ -103,45 +212,41 @@ router.get("/mealdetails", async (req, res) => {
         },
       });
   
-      if (patients.length > 0) {
-        const mealDetailsPromises = patients.map(async (patient) => {
-          const mealDetails = await prisma.patient_Diet.findMany({
-            where: {
-              patientId: patient.id,
-            },
-            select: {
-              morning_meal: true,
-              evening_meal: true,
-              night_meal: true,
-              ingredients: true,
-              instruction: true,
-            },
-          });
+      const mealDetailsPromises = patients.map(async (patient) => {
+        const mealDetails = await prisma.patient_Diet.findMany({
+          where: {
+            patientId: patient.id,
+          },
+          select: {
+            morning_meal: true,
+            evening_meal: true,
+            night_meal: true,
+            ingredients: true,
+            instruction: true,
+            date:true
+          },
+        });
+  
+        if (mealDetails.length > 0) {
           return {
             patientName: patient.username,
             mealDetails,
           };
-        });
+        } else {
+          return null; // no meals, skip this patient
+        }
+      });
   
-        const mealDetailsResults = await Promise.all(mealDetailsPromises);
+      const allResults = await Promise.all(mealDetailsPromises);
+      const filteredResults = allResults.filter((item) => item !== null);
   
-        res.status(200).send({
-          message: "Meal details fetched successfully",
-          mealDetails: mealDetailsResults,
-        });
-      } else {
-        res.status(404).send({
-          message: "No patients found",
-        });
-      }
+      res.status(200).send({
+        message: "Meal details fetched successfully",
+        mealDetails: filteredResults,
+      });
     } catch (error) {
       console.log("Error fetching meal data:", error);
-      res.status(500).send({
-        message: "Server error",
-      });
+      res.status(500).send({ message: "Server error" });
     }
   });
-
-  
-
   module.exports = router;
