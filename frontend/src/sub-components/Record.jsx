@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Admin } from "../components/Admin"
 import  axios  from "axios"
 import { BACKEND_URL } from "../../config";
+import { Spinner } from "../components/skeleton/spinner";
 
 export const Record=()=>{
 
@@ -13,6 +14,7 @@ export const Record=()=>{
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [contact, setContact] = useState("");
+  const [loading, setIsLoading] = useState(false);
 
   const Submit = async (e)=>{
     const newRecord = {
@@ -27,6 +29,7 @@ export const Record=()=>{
     };
 
     try{
+      setIsLoading(true);
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/insert`,newRecord,{
         headers:{
           "Content-Type":"application/json",
@@ -36,11 +39,20 @@ export const Record=()=>{
       alert("Record added successfully");
     } catch(error){
       console.error("Error" , error);
-      alert("an error occurred while adding the record");
+      alert("username already exist! ");
+    } finally{
+      setIsLoading(false);
     }
   }
 
-
+  if (loading) {
+    // Render the spinner as a full-page overlay
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Spinner/>
+      </div>
+    );
+  }
     return(
         <div>
         
