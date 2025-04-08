@@ -8,6 +8,7 @@ export const Meal=({patientName})=>{
   const [nightMeal , setNightMeal] = useState("");
   const [ingredients , setIngredients] = useState("");
   const [instruction , setInstruction] = useState("");
+  const [date , setDate] = useState("");
 
   const AddRecord = async ()=>{
     const mealData = {
@@ -16,7 +17,8 @@ export const Meal=({patientName})=>{
       eveningMeal,
       nightMeal,
       ingredients,
-      instruction
+      instruction,
+      date
     }
     try{
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/meals`,mealData);
@@ -35,6 +37,17 @@ export const Meal=({patientName})=>{
               Create an Meal for {patientName}
             </p>
             <div className="m-10 ml-20 text-base font-medium h-full">
+            
+
+            <p className="mt-2">Date</p>
+              <input
+                type="text"
+                placeholder="16 march 2025"
+                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                value={date}
+                onChange={(e)=>setDate(e.target.value)}
+              />
+
               <p className="mt-2">Morning Meal</p>
               <input
                 type="text"
@@ -79,6 +92,7 @@ export const Meal=({patientName})=>{
                 value={instruction}
                 onChange={(e)=>setInstruction(e.target.value)}
               />
+
 
 
             </div>
