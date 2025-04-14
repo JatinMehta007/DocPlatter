@@ -129,7 +129,7 @@ router.get("/mealdetails", async (req, res) => {
       
       const allResults = await Promise.all(mealDetailsPromises);
       const filteredResults = allResults.filter((item) => item !== null);
-      console.log("patient data", filteredResults);
+      console.log("patient data", patients);
 
       res.status(200).send({
         message: "Meal details fetched successfully",
