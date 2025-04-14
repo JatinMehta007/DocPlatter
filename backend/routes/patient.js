@@ -141,38 +141,6 @@ router.get("/mealdetails", async (req, res) => {
     }
   });
 
-  // router.delete("/:id", async (req, res) => {
-  //   const id = req.params.id;
-  //   console.log("DELETE /delete/:id called with ID:", id);
-  
-  //   try {
-  //     const deleted = await prisma.patients.findFirst({
-  //       where: { id: Number(id) }
-  //     });
-
-  // if(!deleted){
-  //   res.status(404);
-  //   return res.json({
-  //     msg:"not deleted"
-  //   }) 
-  // }
-  
-  // await prisma.deleted.delete({
-  //   where: {
-  //     id: Number(id),
-  //   }
-  // })
-  //     res.status(200).json({
-  //       message: "Patient deleted successfully",
-  //       deleted,
-  //     });
-
-  //   } catch (error) {
-  //     console.error("Error deleting patient:", error);
-  //     res.status(500).json({ message: "Internal server error or patient not found" });
-  //   }
-  // });
-
   router.delete("/:id", async (req, res) => {
     const id = req.params.id;
     console.log("DELETE /:id called with ID:", id);
@@ -192,6 +160,7 @@ router.get("/mealdetails", async (req, res) => {
         },
       });
   
+      console.log("the if is:", deletedPatient);
       res.status(200).json({
         message: "Patient deleted successfully",
         deletedPatient,
