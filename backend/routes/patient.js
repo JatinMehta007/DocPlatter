@@ -40,6 +40,8 @@ router.post("/insert", async (req, res) => {
     }
 });
 
+
+
 router.get('/patients', async(req,res)=>{
      try{
         const patients = await prisma.patients.findMany({
@@ -48,7 +50,6 @@ router.get('/patients', async(req,res)=>{
                 username:true,
             }
         });
-        console.log("Patients data:", patients);
         res.json(patients);
      } catch(error){
         console.log(error);
@@ -57,6 +58,8 @@ router.get('/patients', async(req,res)=>{
         })
      }
 })
+
+
 
 router.post("/meals",async (req,res)=>{
      const {patientName,morningMeal,eveningMeal,nightMeal,ingredients,instruction,date} = req.body;
@@ -93,6 +96,7 @@ router.post("/meals",async (req,res)=>{
         })
      }
 })
+
 
 
 router.get("/mealdetails", async (req, res) => {
@@ -143,22 +147,34 @@ router.get("/mealdetails", async (req, res) => {
     }
   });
 
+
+
+
+
   router.delete("/:id", async (req, res) => {
-    const id = req.params.id;
+    const id = Number(req.params.id);
+  
+    if (isNaN(id)) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
   
     try {
       const patient = await prisma.patients.findUnique({
-        where: { id }
+        where: { id },
       });
-
+  
       if (!patient) {
         return res.status(404).json({ message: "Patient not found" });
       }
   
+      // Delete related meals FIRST (required because of foreign key constraint)
+      await prisma.patient_Diet.deleteMany({
+        where: { patientId: id },
+      });
+  
+      // Then delete the patient
       const deletedPatient = await prisma.patients.delete({
-        where: {
-          id,
-        },
+        where: { id },
       });
   
       res.status(200).json({
@@ -167,7 +183,7 @@ router.get("/mealdetails", async (req, res) => {
       });
   
     } catch (error) {
-      console.error("Error deleting patient:", error.message,error);
+      console.error("Error deleting patient:", error.message, error);
       res.status(500).json({ message: "Internal server error" });
     }
   });
