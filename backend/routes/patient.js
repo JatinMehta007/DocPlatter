@@ -149,7 +149,7 @@ router.get("/mealdetails", async (req, res) => {
       const patient = await prisma.patients.findUnique({
         where: { id: Number(id) }
       });
-  
+    console.log("the de;ete od so : ",patient);
       if (!patient) {
         return res.status(404).json({ message: "Patient not found" });
       }
