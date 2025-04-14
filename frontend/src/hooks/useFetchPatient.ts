@@ -11,7 +11,7 @@ export const useFetchPatient = () => {
         setLoading(true);
       try{
         const response = await axios.get(`${BACKEND_URL}/api/v1/user/patients`);
-        console.log("Fetched patients:", response.data);
+        // console.log("Fetched patients:", response.data);
         setPatients(response.data);
       } catch(error){
         console.log("error fetching patient data",error);
