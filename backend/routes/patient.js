@@ -44,9 +44,11 @@ router.get('/patients', async(req,res)=>{
      try{
         const patients = await prisma.patients.findMany({
             select:{
+                id:true,
                 username:true,
             }
         });
+        console.log("Patients data:", patients);
         res.json(patients);
      } catch(error){
         console.log(error);
@@ -143,31 +145,29 @@ router.get("/mealdetails", async (req, res) => {
 
   router.delete("/:id", async (req, res) => {
     const id = req.params.id;
-    console.log("DELETE /:id called with ID:", id);
   
     try {
       const patient = await prisma.patients.findUnique({
-        where: { id: Number(id) }
+        where: { id }
       });
-    console.log("the de;ete od so : ",patient);
+
       if (!patient) {
         return res.status(404).json({ message: "Patient not found" });
       }
   
       const deletedPatient = await prisma.patients.delete({
         where: {
-          id: Number(id),
+          id,
         },
       });
   
-      console.log("the if is:", deletedPatient);
       res.status(200).json({
         message: "Patient deleted successfully",
         deletedPatient,
       });
   
     } catch (error) {
-      console.error("Error deleting patient:", error);
+      console.error("Error deleting patient:", error.message,error);
       res.status(500).json({ message: "Internal server error" });
     }
   });
