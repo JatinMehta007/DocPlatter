@@ -23,7 +23,7 @@ model Patients{
     age                  String
     gender               String
     contact_information  String 
-    patient_diets    Patient_Diet[]
+    patient_diets    Patient_Diet[] 
 }
 
 model Patient_Diet{
@@ -35,6 +35,6 @@ model Patient_Diet{
     ingredients     String?
     instruction     String
     date            String?
-    patient         Patients @relation(fields: [patientId], references: [id])
+    patient         Patients @relation(fields: [patientId], references: [id], onDelete: Cascade)
     patientId       Int  
 }
