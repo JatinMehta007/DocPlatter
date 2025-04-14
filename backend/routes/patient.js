@@ -93,18 +93,14 @@ router.post("/meals",async (req,res)=>{
 })
 
 
-
-
-
 router.get("/mealdetails", async (req, res) => {
     try {
       const patients = await prisma.patients.findMany({
         select: {
-          username: true,
           id: true,
+          username: true,
         },
       });
-  
       const mealDetailsPromises = patients.map(async (patient) => {
         const mealDetails = await prisma.patient_Diet.findMany({
           where: {
@@ -119,9 +115,10 @@ router.get("/mealdetails", async (req, res) => {
             date:true
           },
         });
-  
+        
         if (mealDetails.length > 0) {
           return {
+            id : patient.id,
             patientName: patient.username,
             mealDetails,
           };
@@ -129,10 +126,11 @@ router.get("/mealdetails", async (req, res) => {
           return null; // no meals, skip this patient
         }
       });
-  
+      
       const allResults = await Promise.all(mealDetailsPromises);
       const filteredResults = allResults.filter((item) => item !== null);
-  
+      console.log("patient data", filteredResults);
+
       res.status(200).send({
         message: "Meal details fetched successfully",
         mealDetails: filteredResults,
@@ -143,5 +141,66 @@ router.get("/mealdetails", async (req, res) => {
     }
   });
 
+  // router.delete("/:id", async (req, res) => {
+  //   const id = req.params.id;
+  //   console.log("DELETE /delete/:id called with ID:", id);
+  
+  //   try {
+  //     const deleted = await prisma.patients.findFirst({
+  //       where: { id: Number(id) }
+  //     });
+
+  // if(!deleted){
+  //   res.status(404);
+  //   return res.json({
+  //     msg:"not deleted"
+  //   }) 
+  // }
+  
+  // await prisma.deleted.delete({
+  //   where: {
+  //     id: Number(id),
+  //   }
+  // })
+  //     res.status(200).json({
+  //       message: "Patient deleted successfully",
+  //       deleted,
+  //     });
+
+  //   } catch (error) {
+  //     console.error("Error deleting patient:", error);
+  //     res.status(500).json({ message: "Internal server error or patient not found" });
+  //   }
+  // });
+
+  router.delete("/:id", async (req, res) => {
+    const id = req.params.id;
+    console.log("DELETE /:id called with ID:", id);
+  
+    try {
+      const patient = await prisma.patients.findUnique({
+        where: { id: Number(id) }
+      });
+  
+      if (!patient) {
+        return res.status(404).json({ message: "Patient not found" });
+      }
+  
+      const deletedPatient = await prisma.patients.delete({
+        where: {
+          id: Number(id),
+        },
+      });
+  
+      res.status(200).json({
+        message: "Patient deleted successfully",
+        deletedPatient,
+      });
+  
+    } catch (error) {
+      console.error("Error deleting patient:", error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 
   module.exports = router;
