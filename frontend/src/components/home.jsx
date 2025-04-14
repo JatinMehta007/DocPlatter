@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { BackgroundBeamsWithCollisionDemo } from "./background";
 import { BackgroundBeamsWithCollision } from "../ui/beams";
 
 export const Home = () => {
