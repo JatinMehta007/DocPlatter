@@ -51,19 +51,19 @@ export const ShowMealDetails = ({ patientName }) => {
         patientMeals.map((meal, index) => (
           <div
             key={index}
-            className="bg-gray-800 rounded-lg p-4 mb-4 border border-gray-600"
+            className="bg-gray-800 rounded-lg p-4 mb-4 border border-gray-600 "
           >
-            <p className="text-base  tracking-wider"><strong className="text-amber-400 text-lg tracking-normal  ">Morning : </strong> {meal.morning_meal}</p>
-            <p className="text-base  tracking-wider"><strong className="text-amber-400 text-lg tracking-normal ">Date : </strong> {meal.date}</p>
-            <p className="text-base  tracking-wider"><strong className="text-amber-400 text-lg tracking-normal ">Evening : </strong> {meal.evening_meal}</p>
-            <p className="text-base  tracking-wider"><strong className="text-amber-400 text-lg tracking-normal ">Night : </strong> {meal.night_meal}</p>
-            <p className="text-base  tracking-wider"><strong className="text-amber-400 text-lg tracking-normal ">Ingredients : </strong> {meal.ingredients}</p>
-            <p className="text-base  tracking-wider"><strong className="text-amber-400 text-lg tracking-normal ">Instruction : </strong> {meal.instruction}</p>
+            <p className="text-base  tracking-wider text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Morning : </strong> {meal.morning_meal || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Date : </strong> {meal.date || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Evening : </strong> {meal.evening_meal || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Night : </strong> {meal.night_meal || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Ingredients : </strong> {meal.ingredients || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Instruction : </strong> {meal.instruction || "null"}</p>
           </div>
         ))
       ) : (
         <p className="text-center text-gray-400">
-          No meal data found for <strong>{patientName}</strong>.
+          No meal data found for <strong>{patientName}</strong>
         </p>
       )}
     </div>
