@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react"
 import { BACKEND_URL } from "../../config";
+import { Spinner } from "../components/skeleton/spinner";
 
 export const Meal=({patientName})=>{
   const [morningMeal , setMorningMeal] = useState("");
@@ -9,6 +10,7 @@ export const Meal=({patientName})=>{
   const [ingredients , setIngredients] = useState("");
   const [instruction , setInstruction] = useState("");
   const [date , setDate] = useState("");
+  const [loading , setIsLoading] = useState(false);
 
   const AddRecord = async ()=>{
     const mealData = {
@@ -21,20 +23,31 @@ export const Meal=({patientName})=>{
       date
     }
     try{
+      setIsLoading(true)
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/meals`,mealData);
         console.log("Meal data added", response.data);
         alert(`Meal record added for ${patientName}`);
+        window.location.reload();
     } catch (error){
       console.log("Error adding meal data", error);
       alert("Failed to add the meal")
+    } finally{
+      setIsLoading(false);
     }
+  }
+  if(loading){
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20">
+        <Spinner/>
+      </div>
+    )
   }
   return(
         <div>
         
           <div className="text-white m-10  rounded-lg bg-black h-auto ">
-            <p className="font-bold text-4xl text-center pt-10">
-              Create an Meal for {patientName}
+            <p className="font-bold text-4xl text-center pt-10 uppercase">
+              Create an Meal for <span className=" text-yellow-600 ">{patientName}</span>
             </p>
             <div className="m-10 ml-20 text-base font-medium h-full">
             
