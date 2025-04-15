@@ -1,10 +1,16 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { BACKEND_URL } from "../../../config";
+import { AnimatedTooltip } from "../../ui/popup";
+import { Spinner } from "./spinner";
+
 
 export const DeletePatient = ({ id }: { id: Number }) => {
-  const handleDelete = async () => {
+  const [loading, setIsLoading] = useState(false);
+
+    const handleDelete = async () => {
     try {
+      setIsLoading(true);
       if (!id) {
         console.error("Patient ID is undefined");
         return;
@@ -24,18 +30,30 @@ export const DeletePatient = ({ id }: { id: Number }) => {
         error?.response?.data?.message ||
         "Failed to delete patient. Please try again."
       );
+    } finally{
+      setIsLoading(false);
     }
   };
 
-
+  const people = [
+    {
+      id: 1,
+      name: "delete patient"
+    },
+  ];
+  
   return (
-    <div className="ml-auto hover:text-gray-500">
-      <button onClick={handleDelete}>
+    <div className="ml-auto relative ">
+      {loading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20" ><Spinner/></div>
+      )}
+      <button onClick={handleDelete} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="50"
           height="50"
           viewBox="0 0 256 256"
+          className="hover:bg-yellow-200  rounded-sm absolute"
         >
           <g
             fill="none"
@@ -62,6 +80,9 @@ export const DeletePatient = ({ id }: { id: Number }) => {
             </g>
           </g>
         </svg>
+        <div className="">
+        <AnimatedTooltip items={people} />
+        </div>
       </button>
     </div>
   );
