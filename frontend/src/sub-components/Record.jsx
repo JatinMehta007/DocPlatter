@@ -35,8 +35,8 @@ export const Record=()=>{
           "Content-Type":"application/json",
         },
       });
-
       alert("Record added successfully");
+      window.location.reload();
     } catch(error){
       console.error("Error" , error);
       alert("username already exist! ");
@@ -48,16 +48,17 @@ export const Record=()=>{
   if (loading) {
     // Render the spinner as a full-page overlay
     return (
-      <div className="h-screen flex justify-center items-center">
+      <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20">
         <Spinner/>
       </div>
     );
   }
+
     return(
         <div>
         
           <div className="text-white m-10  rounded-lg bg-black h-auto ">
-            <p className="font-bold text-4xl text-center pt-10">
+            <p className="font-bold text-4xl text-center pt-10 uppercase">
               Create an Record
             </p>
             
@@ -136,7 +137,7 @@ export const Record=()=>{
             </div>
 
             <div className="text-center mx-auto h-10 w-28  bg-white text-black rounded-md">
-              <button onClick={Submit} className="mt-2   font-semibold" >Add Record</button>
+              <button onClick={Submit} className="mt-2   font-semibold"  >Add Record</button>
             </div>
             <div className="h-10"></div>
           </div>
