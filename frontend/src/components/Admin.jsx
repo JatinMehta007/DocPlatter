@@ -15,6 +15,7 @@ export const Admin = () => {
   return (
     <div className="h-full bg-gradient-to-r from-zinc-900 to-zinc-950 ">
       <div className="flex justify-between">
+        
         <p
           className="text-white p-4 font-semibold pl-10  text-2xl cursor-pointer"
           onClick={Home}
