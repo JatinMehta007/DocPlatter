@@ -51,7 +51,7 @@ export const ShowMealDetails = ({ patientName }) => {
        
       {patientMeals.length > 0 ? (
         patientMeals.map((meal, index) => {
-          console.log("tje redndoreorm:",meal);
+          // console.log("tje redndoreorm:",meal);
           return (
             <div
             key={meal.id || index}
