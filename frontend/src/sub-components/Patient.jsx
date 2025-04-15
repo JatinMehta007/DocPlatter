@@ -14,6 +14,11 @@ export const Patient = () => {
     setShowMeal(true);
   }
   
+  const handleBack=()=>{
+    setShowMeal(false);
+    setSelectedPatientName("");
+  };
+
   return (
     <div>
       {!showMeal && ( 
@@ -65,14 +70,20 @@ export const Patient = () => {
               </div>
               </div>
               )
-})
+            })
             )
           }
         </div>
       )}
 
       {showMeal && ( 
+        
         <div className="p-4">
+        <div className="p-4">
+          <button onClick={handleBack} className="mb-1 py-1 w-52 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-bold ">
+            ← Back to Patient List
+          </button>
+        </div>
           <Meal patientName={selectedPatientName} />
         </div>
       )}
