@@ -118,7 +118,8 @@ router.get("/mealdetails", async (req, res) => {
             night_meal: true,
             ingredients: true,
             instruction: true,
-            date:true
+            date:true,
+            id:true
           },
         });
         
@@ -168,7 +169,7 @@ router.get("/mealdetails", async (req, res) => {
       }
   
       // Delete related meals FIRST (required because of foreign key constraint)
-      await prisma.patient_Diet.deleteMany({
+      const deletedMeal = await prisma.patient_Diet.deleteMany({
         where: { patientId: id },
       });
   
@@ -180,6 +181,7 @@ router.get("/mealdetails", async (req, res) => {
       res.status(200).json({
         message: "Patient deleted successfully",
         deletedPatient,
+        deletedMeal
       });
   
     } catch (error) {
@@ -188,4 +190,38 @@ router.get("/mealdetails", async (req, res) => {
     }
   });
 
+
+  router.delete("/meal/:id",async (req,res)=>{
+    const id = Number(req.params.id);
+
+    // console.log("the id is you seen :",id);
+    // console.log("req.params.id:", req.params.id);
+
+    if (isNaN(id)) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
+  
+    try{
+      const meal = await prisma.patient_Diet.findFirst({
+          where:{id}
+      })
+
+      if(!meal){
+        return res.status(404).json({ message: "Patient not found" });
+      }
+
+      const deletedMeal = await prisma.patient_Diet.delete({
+        where: { id },
+      });
+      res.status(200).json({
+        message: "Patient deleted successfully",
+        deletedMeal
+      });
+  
+    } catch (error) {
+      console.error("Error deleting patient:", error.message, error);
+      res.status(500).json({ message: "Internal server error" });
+    }
+    
+  })
   module.exports = router;
