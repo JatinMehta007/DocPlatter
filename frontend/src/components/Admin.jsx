@@ -4,7 +4,7 @@ import { Record } from "../sub-components/Record";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { Dropdown } from "../sub-components/Dropdown";
-
+import  logo from "../image/font.png";
 
 export const Admin = () => {
   const [activePanel, setActivePanel] = useState("admin");
@@ -17,10 +17,10 @@ export const Admin = () => {
       <div className="flex justify-between">
         
         <p
-          className="text-white p-4 font-semibold pl-10  text-2xl cursor-pointer"
+          className=" p-4  pl-1  cursor-pointer"
           onClick={Home}
         >
-          HELIVERSE
+          <img src={logo} alt="" className="h-10" />
         </p>
         <Dropdown/>
       </div>
