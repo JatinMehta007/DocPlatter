@@ -3,8 +3,59 @@ const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-
+const { brcypt } = require("bcrypt");
+const { z } = require("zod");
 const router = express.Router();
+
+
+const signupSchema = z.object({
+  username  : z.string().nonempty("Username is required"),
+  email     : z.string().email("Invalid email address"),
+  password  : z.string().min(6,"Password atleast 6 characters long"),
+});
+
+
+
+router.post("/user",async(req,res)=>{ long
+    try{
+      const parsedData = signupSchema.safeParse(req.body);
+      if(!parsedData.success){
+        const errors = parsedData.error.flatten().fieldErrors;
+        return res.status(400).json({ message  : "Validation failed", errors});
+      }
+
+      const { username , email , password} = parsedData.data;
+
+      const existigUser = await prisma.user.findUnique({
+        where:{ email },
+      })
+
+      if(existigUser){
+        return res.status(400).json({ message : "User already exist with this email"})
+      }
+
+      const hashedPassword = await brcypt.hash(password,10);
+
+      const signup  = await prisma.user.create({
+        data:{
+          username,
+          email,
+          password : hashedPassword
+        }
+      });
+
+      const token = jwt.sign({ userId : signup.id} , JWT_SECRET , { expiresIn :"7d"});
+
+      res.status(201).json({
+        message : "Signup successfull",
+        token
+      })
+    } catch (error) {
+      console.error("Error creating user:", error);
+      res.status(500).json({ message: "Server error" });
+  }
+})
+
 
 router.post("/insert", async (req, res) => {
     try {
