@@ -1,9 +1,9 @@
-const express = require('express');
+const express  = require("express");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
-const { brcypt } = require("bcrypt");
+const  brcypt  = require("bcrypt");
 const { z } = require("zod");
 const router = express.Router();
 
@@ -16,7 +16,7 @@ const signupSchema = z.object({
 
 
 
-router.post("/user",async(req,res)=>{ long
+router.post("/create",async(req,res)=>{ 
     try{
       const parsedData = signupSchema.safeParse(req.body);
       if(!parsedData.success){
@@ -24,7 +24,7 @@ router.post("/user",async(req,res)=>{ long
         return res.status(400).json({ message  : "Validation failed", errors});
       }
 
-      const { username , email , password} = parsedData.data;
+      const { username , email , password } = parsedData.data;
 
       const existigUser = await prisma.user.findUnique({
         where:{ email },
@@ -45,7 +45,7 @@ router.post("/user",async(req,res)=>{ long
       });
 
       const token = jwt.sign({ userId : signup.id} , JWT_SECRET , { expiresIn :"7d"});
-
+      console.log("the user details are",signup );
       res.status(201).json({
         message : "Signup successfull",
         token
@@ -56,6 +56,40 @@ router.post("/user",async(req,res)=>{ long
   }
 })
 
+router.post("/login",async(req,res)=>{
+  const {email,password} = req.body;
+   try{
+    const users = await prisma.user.findUnique({
+      where:{
+        email
+      },
+    });
+    
+    if(!users){
+      return res.status(400).json({ message  : "User not found"});
+    }
+
+    const isPasswordValid  = await brcypt.compare(password , users.password);
+
+    if(!isPasswordValid){
+      return res.status(401).json({ message : "Invalid password"});
+    }
+
+    const token = jwt.sign({userId : users.id},JWT_SECRET,{
+      expiresIn:"7d",
+    })
+
+    
+    return res.status(200).json({
+      message : "Login successfully",
+      token
+    })
+   } catch (error) {
+    console.error("Login error:", error);
+   return res.status(500).json({ message: "Server error" });
+  
+   }
+})
 
 router.post("/insert", async (req, res) => {
     try {
