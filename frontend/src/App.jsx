@@ -10,6 +10,7 @@ import { Patient } from "./sub-components/Patient"
 import { Record } from "./sub-components/Record"
 import { MealDetails } from "./sub-components/MealDetails"
 import { FullDetails } from "./sub-components/FullDetails"
+import { Login } from "./components/login"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/record" element={<Record/>}></Route>
         <Route path="/mealdetails" element={<MealDetails/>}></Route>
         <Route path="/full" element={<FullDetails/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
       </Routes>
       </BrowserRouter>
     </>
