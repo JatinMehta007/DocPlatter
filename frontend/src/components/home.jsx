@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router";
 import { BackgroundBeamsWithCollision } from "../ui/beams";
 import icon from "../image/font.png";
-import image from "../image/image.png";;
+import image from "../image/image.png";
+import github from "../image/github.png";
+import linkedin from "../image/linkedin.png";;
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -54,6 +56,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
+
         <section className=" text-white py-16">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-3xl sm:text-6xl font-bold text-center mb-12">
@@ -92,7 +95,26 @@ export const Home = () => {
             </div>
           </div>
         </section>
+        {/* // add footer */}
+        <footer>
+          <hr />
+          <div className="flex justify-between ">
+          <div className="mx-24">
+          <img src={icon} alt="font" className="h-[80px]  mt-10   " />
+          <p className="text-white ml-[90px]">A product by <a href="https://github.com/JatinMehta007"><span className="text-yellow-500"> Jatin Mehta</span></a></p>
+          <p className="text-white ml-[90px]  mb-16">A product by <a href="https://twitter.com/JatinMehta35630"> <span className="text-yellow-500"> @JatinMehta35630 </span></a></p>
+          </div>
 
+          <div className="mx-32">
+            <a href="https://github.com/JatinMehta007/DocPlatter" target="_blank" rel="noopener noreferrer">
+            <img src={github} alt="github-icon" className="h-10 mt-10 " />
+            </a>
+            <a href="https://www.linkedin.com/in/jatin-mehta-a70a0025a/" target="_blank" rel="noopener noreferre">
+            <img src={linkedin} alt="github-icon" className="h-10 mt-10" />
+            </a>
+          </div>
+          </div>
+        </footer>
       </BackgroundBeamsWithCollision>
     </div>
   );
