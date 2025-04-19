@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { BACKEND_URL } from "../../config";
 import axios from "axios";
@@ -12,9 +11,28 @@ export const Signup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [emailError , setEmailError] = useState("");
+  const [passwordError , setPasswordError] = useState("");
+  const [userError, setUserError] = useState("")
   const navigate = useNavigate();
 
   const createUser = async () => {
+    setUserError("");
+    setEmailError("");
+    setPasswordError("");
+    setError("");
+
+  const newUserError = !username.trim() ? "Please enter your name" : "";
+  const newEmailError = !email.trim() ? "Please enter your email" : "";
+  const newPasswordError = !password.trim() ? "Please enter your password" : "";
+
+  setUserError(newUserError);
+  setEmailError(newEmailError);
+  setPasswordError(newPasswordError);
+
+  if (newUserError || newEmailError || newPasswordError) {
+    return;
+  }
     try {
       setLoading(true);
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/create`, {
@@ -22,16 +40,20 @@ export const Signup = () => {
         email,
         password,
       });
-      console.log("Signup response:", response.data);
+      
+      // console.log("Signup response:", response.data);
+
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         navigate("/admin");
       }
     } catch (err) {
-      console.error("Signup error:", err);
-      if (err.response && err.response.data?.message) {
-        setError(err.response.data.message);
-        alert("enter the valid email id");
+      console.error("Login error:", err);
+      if (err.response?.data?.errors) {
+        const { email , password,username } = err.response.data.errors;
+        if(username) setUserError(username[0]);
+        if(email) setEmailError(email[0]);
+        if(password) setPasswordError(password[0]);
       } else {
         setError("Something went wrong. Please try again.");
       }
@@ -72,9 +94,15 @@ export const Signup = () => {
               placeholder="Jack"
               className=" "
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                if(userError) setUserError("");
+              }}
             />
+
+  {userError && <p className="text-red-500 mt-1 text-sm">{userError} </p> }
           </p>
+
           <p className="text-white mt-4 font-medium">
             Email Address
             <Input
@@ -82,8 +110,14 @@ export const Signup = () => {
               placeholder="docplatter@fc.com"
               className=" "
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                
+                if(emailError) setEmailError("");
+              }}
             />
+        
+  {emailError && <p className="text-red-500 mt-1 text-sm">{emailError}</p>}
           </p>
           <p className="text-white mt-4 font-medium">
             Password
@@ -92,8 +126,13 @@ export const Signup = () => {
               placeholder="••••••••••"
               className=" "
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if(passwordError) setPasswordError("");
+              }}
             />
+
+  {passwordError && <p className="text-red-500 mt-1 text-sm">{passwordError}</p>}
           </p>
 
           {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
