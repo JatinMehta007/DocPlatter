@@ -43,6 +43,8 @@
 
 ## Screenshots
 
+▶️ [Watch Demo Video](https://docplatter-jatinmehta.vercel.app/video.mp4)
+---
 ![ Screenshot](./frontend/public/image.png) 
 ---
 
