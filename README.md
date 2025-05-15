@@ -1,7 +1,6 @@
 
 
 <h1 align="center">Docplatter</h1>
-
 <p align="center">
   Docplatter is a simple yet powerful patient meal management system.
 .<br />
