@@ -6,14 +6,54 @@ const prisma = new PrismaClient();
 const  brcypt  = require("bcrypt");
 const { z } = require("zod");
 const router = express.Router();
-
+const authenticateToken = require("../middlewares/authenticate");
 
 const signupSchema = z.object({
-  username  : z.string().nonempty("Username is required"),
-  email     : z.string().email("Invalid email address"),
+  username  : z.string().nonempty(1,"Username is required"),
+  email     : z.string().email("Invalid email address","email is required"),
   password  : z.string().min(6,"Password atleast 6 characters long"),
 });
 
+
+router.post("/mydata", authenticateToken, async (req, res) => {
+  try {
+    const patients = await prisma.patients.findMany({
+      where: {
+        userId: req.userId, // only patients of logged-in user
+      },
+      select: {
+        id: true,
+        username: true,
+        diseases: true,
+        allergies: true,
+        age: true,
+        gender: true,
+        contact_information: true,
+        room_number: true,
+        bed_number: true,
+        patient_diets: {
+          select: {
+            morning_meal: true,
+            evening_meal: true,
+            night_meal: true,
+            ingredients: true,
+            instruction: true,
+            date: true,
+          },
+        },
+      },
+    });
+    res.status(200).json({
+      message: "User specific data fetched successfully",
+      data: patients,
+    });
+  } catch (error) {
+    console.error("Error fetching user data ", error);
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
 
 
 router.post("/create",async(req,res)=>{ 
@@ -56,6 +96,7 @@ router.post("/create",async(req,res)=>{
   }
 })
 
+
 router.post("/login",async(req,res)=>{
   const {email,password} = req.body;
    try{
@@ -91,7 +132,22 @@ router.post("/login",async(req,res)=>{
    }
 })
 
-router.post("/insert", async (req, res) => {
+
+// Fetch all patients for logged-in user
+router.get('/patients', authenticateToken, async (req, res) => {
+  try {
+    const patients = await prisma.patients.findMany({
+      where: { userId: req.userId },
+      select: { id: true, username: true }
+    });
+    res.json(patients);
+  } catch (error) {
+    console.error("Error fetching patients:", error);
+    res.status(500).json({ message: "Error fetching patients" });
+  }
+});
+
+router.post("/insert",authenticateToken, async (req, res) => {
     try {
         const { username, diseases, allergies, room_number, bed_number, floor_number, age, gender, contact_information } = req.body;
 
@@ -109,7 +165,8 @@ router.post("/insert", async (req, res) => {
                 floor_number,
                 age,
                 gender,
-                contact_information
+                contact_information,
+                userId : req.userId
             }
         });
 
@@ -119,6 +176,7 @@ router.post("/insert", async (req, res) => {
             message: "User created successfully",
             token: token
         });
+        // console.log("the token ius : ",token);
     } catch (error) {
         console.error("Error creating user:", error);
         res.status(500).json({ message: "Server error" });
@@ -127,32 +185,20 @@ router.post("/insert", async (req, res) => {
 
 
 
-router.get('/patients', async(req,res)=>{
-     try{
-        const patients = await prisma.patients.findMany({
-            select:{
-                id:true,
-                username:true,
-            }
-        });
-        res.json(patients);
-     } catch(error){
-        console.log(error);
-        res.status(500).json({
-            message : "Error fetching Patients"
-        })
-     }
-})
 
-
-
-router.post("/meals",async (req,res)=>{
+router.post("/meals",authenticateToken,async (req,res)=>{
      const {patientName,morningMeal,eveningMeal,nightMeal,ingredients,instruction,date} = req.body;
 
      try{
-        const patient = await prisma.patients.findUnique({
-            where : {username:patientName},
+        const patient = await prisma.patients.findFirst({
+            where : {
+              username:patientName,
+              userId : req.userId
+            },
         });
+        if (!patient) {
+      return res.status(404).json({ message: "Patient not found or unauthorized" });
+    }
         if(patient){
             const meal = await prisma.patient_Diet.create({
                 data:{
@@ -184,9 +230,10 @@ router.post("/meals",async (req,res)=>{
 
 
 
-router.get("/mealdetails", async (req, res) => {
+router.get("/mealdetails",authenticateToken, async (req, res) => {
     try {
       const patients = await prisma.patients.findMany({
+        where:{ userId : req.userId },
         select: {
           id: true,
           username: true,
@@ -246,7 +293,10 @@ router.get("/mealdetails", async (req, res) => {
   
     try {
       const patient = await prisma.patients.findUnique({
-        where: { id },
+        where: { 
+          id,
+          userId : req.userId,
+         },
       });
   
       if (!patient) {
@@ -276,7 +326,7 @@ router.get("/mealdetails", async (req, res) => {
   });
 
 
-  router.delete("/meal/:id",async (req,res)=>{
+  router.delete("/meal/:id",authenticateToken,async (req,res)=>{
     const id = Number(req.params.id);
 
     // console.log("the id is you seen :",id);
@@ -309,4 +359,5 @@ router.get("/mealdetails", async (req, res) => {
     }
     
   })
+
   module.exports = router;

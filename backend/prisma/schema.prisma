@@ -9,15 +9,16 @@ datasource db {
 }
 
 model User{
-  id Int @id @default(autoincrement())
-  username String
-  email String @unique
-  password String
+  id              Int @id @default(autoincrement())
+  username        String
+  email           String @unique
+  password        String
+  patients        Patients[]
 }
 
 model Patients{
     id                   Int @id @default(autoincrement())
-    username             String  @unique
+    username             String  
     diseases             String
     allergies            String  
     room_number          String
@@ -25,11 +26,12 @@ model Patients{
     age                  String
     gender               String
     contact_information  String 
-    patient_diets    Patient_Diet[] 
+    userId               Int?
+    user                 User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+    patient_diets        Patient_Diet[] 
 }
 
 model Patient_Diet{
-
     id              Int @id @default(autoincrement())
     morning_meal    String
     evening_meal    String
