@@ -22,9 +22,15 @@ export const Meal=({patientName})=>{
       instruction,
       date
     }
+
+      const token  = localStorage.getItem("token");
     try{
       setIsLoading(true)
-      const response = await axios.post(`${BACKEND_URL}/api/v1/user/meals`,mealData);
+      const response = await axios.post(`${BACKEND_URL}/api/v1/user/meals`,mealData,{
+        headers:{
+          Authorization : `Bearer ${token}`,
+        }
+      });
         console.log("Meal data added", response.data);
         alert(`Meal record added for ${patientName}`);
         window.location.reload();
@@ -35,6 +41,7 @@ export const Meal=({patientName})=>{
       setIsLoading(false);
     }
   }
+
   if(loading){
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20">
