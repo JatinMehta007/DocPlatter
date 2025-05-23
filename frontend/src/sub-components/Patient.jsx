@@ -3,22 +3,29 @@ import { Meal } from "./Meal";
 import { Skeleton } from "../components/skeleton/skeleton";
 import { useFetchPatient } from "../hooks/useFetchPatient";
 import { DeletePatient } from "../components/skeleton/delete";
+import { useNavigate } from "react-router";
 
 export const Patient = () => {
   const [showMeal, setShowMeal] = useState(false); 
+  const [showAddRecord, setShowAddRecord] = useState(false); 
   const [selectedPatientName, setSelectedPatientName] =useState("");
   const {  patients,loading  } = useFetchPatient();
 
+  const handleBack=()=>{
+    setShowMeal(false);
+    setShowAddRecord(false);
+    setSelectedPatientName("");
+  };
+
+  const handleAddRecordClick = () =>{
+    setShowAddRecord(true);
+  }
+  
   const PatientClick = (patientName)=>{
     setSelectedPatientName(patientName);
     setShowMeal(true);
   }
   
-  const handleBack=()=>{
-    setShowMeal(false);
-    setSelectedPatientName("");
-  };
-
   return (
     <div>
       {!showMeal && ( 
@@ -41,7 +48,15 @@ export const Patient = () => {
             <Skeleton/>
             </>
           ) : patients.length === 0 ?(
-            <p className="text-center text-gray-400 mt-10">No records found</p>
+            <div className="text-center text-gray-400 mt-10">
+    <p className="mb-4">No records found.</p>
+    <button
+      className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 font-semibold"
+      onClick={() => navigate("/admin")}
+    >
+      Add Record
+    </button>
+  </div>
           ) :(
 
             patients.map((patient,index) => {
