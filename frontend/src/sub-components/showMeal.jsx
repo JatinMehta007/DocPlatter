@@ -11,7 +11,11 @@ export const ShowMealDetails = ({ patientName }) => {
   useEffect(() => {
     const fetchMealData = async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/v1/user/mealdetails`);
+        const res = await axios.get(`${BACKEND_URL}/api/v1/user/mealdetails`,{
+          headers:{
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+        });
         const allMeals = res.data.mealDetails;
 
         const matchedPatient = allMeals.find(
