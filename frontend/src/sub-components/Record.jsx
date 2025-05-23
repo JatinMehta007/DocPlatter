@@ -28,11 +28,14 @@ export const Record=()=>{
       contact_information:contact,
     };
 
+      const token  = localStorage.getItem("token");
+
     try{
       setIsLoading(true);
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/insert`,newRecord,{
         headers:{
           "Content-Type":"application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
       alert("Record added successfully");
@@ -46,7 +49,6 @@ export const Record=()=>{
   }
 
   if (loading) {
-    // Render the spinner as a full-page overlay
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/20">
         <Spinner/>
