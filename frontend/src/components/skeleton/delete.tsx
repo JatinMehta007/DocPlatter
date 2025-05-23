@@ -18,7 +18,7 @@ export const DeletePatient = ({ id }: { id: Number }) => {
 
       await axios.delete(`${BACKEND_URL}/api/v1/user/${id}`, {
         headers: {
-          Authorization: localStorage.getItem("token") || "",
+          Authorization: `Bearer ${localStorage.getItem("token")}` || "",
         },
       });
 
