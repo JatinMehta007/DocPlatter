@@ -10,21 +10,18 @@ export const Patient = () => {
   const [showAddRecord, setShowAddRecord] = useState(false); 
   const [selectedPatientName, setSelectedPatientName] =useState("");
   const {  patients,loading  } = useFetchPatient();
+  const navigate = useNavigate();
+
+  const PatientClick = (patientName)=>{
+    setSelectedPatientName(patientName);
+    setShowMeal(true);
+  }
 
   const handleBack=()=>{
     setShowMeal(false);
     setShowAddRecord(false);
     setSelectedPatientName("");
   };
-
-  const handleAddRecordClick = () =>{
-    setShowAddRecord(true);
-  }
-  
-  const PatientClick = (patientName)=>{
-    setSelectedPatientName(patientName);
-    setShowMeal(true);
-  }
   
   return (
     <div>
@@ -52,7 +49,7 @@ export const Patient = () => {
     <p className="mb-4">No records found.</p>
     <button
       className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 font-semibold"
-      onClick={() => navigate("/admin")}
+      onClick={() => navigate("/admin", { state : { panel: "admin" }})}
     >
       Add Record
     </button>
