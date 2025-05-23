@@ -9,7 +9,11 @@ export const useFetchPatientWithMeal = () => {
   useEffect(() => {
     const fetchMealPatients = async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/v1/user/mealdetails`);
+        const res = await axios.get(`${BACKEND_URL}/api/v1/user/mealdetails`,{
+          headers:{
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+        });
         setPatientsWithMeals(res.data.mealDetails); // already filtered in backend
       } catch (error) {
         console.error("Error fetching patients with meals:", error);

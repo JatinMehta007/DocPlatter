@@ -18,7 +18,7 @@ export const DeleteMeals=({id}: {id :String})=>{
     
           await axios.delete(`${BACKEND_URL}/api/v1/user/meal/${id}`, {
             headers: {
-              Authorization: localStorage.getItem("token") || "",
+              Authorization: `Bearer ${localStorage.getItem("token")}` || "",
             },
           });
     

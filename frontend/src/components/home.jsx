@@ -89,7 +89,7 @@ export const Home = () => {
                 <h3 className="text-xl font-semibold mb-2">Assign Meals</h3>
                 <p className="text-zinc-400">
                   Assign customized meal plans based on dietary restrictions and
-                  schedules.
+                  schedule.
                 </p>
               </div>
             </div>
