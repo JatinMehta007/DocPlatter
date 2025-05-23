@@ -1,17 +1,27 @@
 import { Patient } from "../sub-components/Patient";
 import { MealDetails } from "../sub-components/MealDetails";
 import { Record } from "../sub-components/Record";
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { Dropdown } from "../sub-components/Dropdown";
 import  logo from "../image/font.png";
 
 export const Admin = () => {
-  const [activePanel, setActivePanel] = useState("admin");
+  const location = useLocation();
   const navigate = useNavigate();
+  
+  const [activePanel, setActivePanel] = useState("admin");
+  
+  useEffect(() => {
+    if (location.state?.panel) {
+      setActivePanel(location.state.panel);
+    }
+  }, [location.state]);
+
   const Home = () => {
     navigate("/admin");
   };
+
   return (
     <div className="h-full bg-gradient-to-r from-zinc-900 to-zinc-950 ">
       <div className="flex justify-between">
