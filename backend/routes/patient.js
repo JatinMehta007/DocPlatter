@@ -19,7 +19,7 @@ router.post("/mydata", authenticateToken, async (req, res) => {
   try {
     const patients = await prisma.patients.findMany({
       where: {
-        userId: req.userId, // only patients of logged-in user
+        userId: req.userId, 
       },
       select: {
         id: true,
@@ -147,6 +147,7 @@ router.get('/patients', authenticateToken, async (req, res) => {
   }
 });
 
+
 router.post("/insert",authenticateToken, async (req, res) => {
     try {
         const { username, diseases, allergies, room_number, bed_number, floor_number, age, gender, contact_information } = req.body;
@@ -182,8 +183,6 @@ router.post("/insert",authenticateToken, async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
-
-
 
 
 router.post("/meals",authenticateToken,async (req,res)=>{
@@ -227,7 +226,6 @@ router.post("/meals",authenticateToken,async (req,res)=>{
         })
      }
 })
-
 
 
 router.get("/mealdetails",authenticateToken, async (req, res) => {
@@ -281,9 +279,6 @@ router.get("/mealdetails",authenticateToken, async (req, res) => {
   });
 
 
-
-
-
   router.delete("/:id", async (req, res) => {
     const id = Number(req.params.id);
   
@@ -303,12 +298,10 @@ router.get("/mealdetails",authenticateToken, async (req, res) => {
         return res.status(404).json({ message: "Patient not found" });
       }
   
-      // Delete related meals FIRST (required because of foreign key constraint)
       const deletedMeal = await prisma.patient_Diet.deleteMany({
         where: { patientId: id },
       });
   
-      // Then delete the patient
       const deletedPatient = await prisma.patients.delete({
         where: { id },
       });
