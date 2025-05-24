@@ -13,15 +13,15 @@ export const Home = () => {
   };
 
   return (
-    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-900  to-zinc-950 ">
+    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-900  to-zinc-950 overflow-hidden">
       {/* // navbar */}
       <BackgroundBeamsWithCollision>
         <div className="flex items-center justify-center relative">
-          <div className="w-[1300px]  bg-black mt-10 h-16 fixed top-0 z-50  ">
-            <div className="flex justify-between text-white mt-2 ml- font-semibold">
+          <div className="lg:w-[88%] w-[95%] sm:w-[95%]    bg-black mt-6 sm:mt-10 h-16 fixed top-0 z-50  ">
+            <div className="flex justify-between text-white mt-2  font-semibold">
               <img src={icon} alt="logo" className="h-10 mt-[1px] " />
               <button
-                className="mr-8 bg-white w-20 h-7 text-black rounded-md mt-2"
+                className="mr-4 sm:mr-8 bg-white w-20 h-7 text-black rounded-md mt-2"
                 onClick={Click}
               >
                 <p className="text-center">login</p>
@@ -31,27 +31,28 @@ export const Home = () => {
         </div>
 
         {/* welcome to heliverse */}
-        <div className="text-white pt-40">
-          <div className="text-8xl  text-center flex justify-center items-center  ">
-            <p className="ml-5 absolute mr-[500px] mt-3 tracking-wider font-extrabold">
+        <div className="text-white md:pt-40 pt-20">
+          <div className="xl:text-8xl lg:text-7xl text-5xl md:text-6xl  text-center flex justify-center items-center  ">
+            <p className="xl:ml-5 text-center   absolute md:mr-[320px] lg:mr-[450px] xl:mr-[500px] xl:mt-3 md:mt-1 lg:mt-[10px] tracking-wider font-extrabold">
               Welcome to
             </p>
-            <img src={icon} alt="font" className="h-[180px] ml-[500px]  " />
+            <img src={icon} alt="font" className="xl:h-[180px] md:mt-0 md:h-[110px] lg:h-[148px] md:ml-[307px] lg:ml-[315px]  xl:ml-[500px] h-[110px] mt-20   " />
           </div>
+
           <div className="">
-            <div className="grid grid-flow-col  bg-stone-900 w-[1100px] h-[500px] ml-24 rounded-3xl  ">
-              <div className="grid-cols-1 w-[65%] p-10">
-                <p className="text-6xl text-left font-extrabold tracking-wider pt-5 ml-20  ">
+            <div className="xl:grid xl:grid-flow-col md:mt-10  bg-stone-900 xl:w-[1100px] xl:h-[500px] xl:ml-24 xl:rounded-3xl  ">
+              <div className="xl:grid-cols-1 xl:w-[65%] p-10">
+                <p className="xl:text-6xl md:text-6xl text-4xl text-center xl:text-left font-extrabold tracking-wider pt-5 xl:ml-20  ">
                   Simple, Smart, and Reliable Hospital Management
-                  <span className="text-2xl block font-normal mt-6">
+                  <span className="xl:text-2xl md:text-2xl lg:text-3xl text-base block font-normal mt-6">
                     Add patients, assign meals, and manage records — all in one
                     place. Join others streamlining hospital care with
                     DocPlatter.
                   </span>
                 </p>
               </div>
-              <div className="grid-cols-2 absolute h-[400px] w-[500px]  ml-[720px] mt-28  ">
-                <img src={image} alt="" className="rounded-3xl" />
+              <div className="xl:grid-cols-2 xl:absolute xl:h-[400px] xl:w-[500px] 2xl:ml-[720px] xl:ml-[670px]  w-screen xl:mt-28  ">
+                <img src={image} alt="" className="ls:rounded-3xl" />
               </div>
             </div>
           </div>
@@ -99,18 +100,18 @@ export const Home = () => {
         <footer>
           <hr />
           <div className="flex justify-between ">
-          <div className="mx-24">
-          <img src={icon} alt="font" className="h-[80px]  mt-10   " />
-          <p className="text-white ml-[90px]">A product by <a href="https://github.com/JatinMehta007"><span className="text-yellow-500"> Jatin Mehta</span></a></p>
-          <p className="text-white ml-[90px]  mb-16">A product by <a href="https://twitter.com/JatinMehta35630"> <span className="text-yellow-500"> @JatinMehta35630 </span></a></p>
+          <div className="xl:mx-24 mt-8 md:mt-0">
+          <img src={icon} alt="font" className="xl:h-[80px] md:h-[60px] hidden md:block  lg:mt-10 md:mt-5   " />
+          <p className="text-white ml-7 xl:ml-[90px] md:ml-[70px]">A product by <a href="https://github.com/JatinMehta007"><span className="text-yellow-500"> Jatin Mehta</span></a></p>
+          <p className="text-white ml-7 xl:ml-[90px] mt-2 md:ml-[70px]  mb-16">A product by <a href="https://twitter.com/JatinMehta35630"> <span className="text-yellow-500"> @JatinMehta35630 </span></a></p>
           </div>
 
-          <div className="mx-32">
+          <div className="xl:mx-32 mx-8 ">
             <a href="https://github.com/JatinMehta007/DocPlatter" target="_blank" rel="noopener noreferrer">
-            <img src={github} alt="github-icon" className="h-10 mt-10 " />
+            <img src={github} alt="github-icon" className="xl:h-10 h-8 md:mt-8 lg:mt-10 mt-6 ml-2 md:ml-0" />
             </a>
             <a href="https://www.linkedin.com/in/jatin-mehta-a70a0025a/" target="_blank" rel="noopener noreferre">
-            <img src={linkedin} alt="github-icon" className="h-10 mt-10" />
+            <img src={linkedin} alt="github-icon" className="xl:h-10 h-8 md:mt-8 lg:mt-10 mt-3 ml-2 md:ml-0" />
             </a>
           </div>
           </div>
