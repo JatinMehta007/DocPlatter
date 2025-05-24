@@ -23,7 +23,7 @@ export const Admin = () => {
   };
 
   return (
-    <div className="h-full bg-gradient-to-r from-zinc-900 to-zinc-950 ">
+    <div className="min-h-screen bg-gradient-to-r from-zinc-900 to-zinc-950 ">
       <div className="flex justify-between">
         
         <p
@@ -41,7 +41,7 @@ export const Admin = () => {
         style={{ gridTemplateColumns: "20% 80%" }}
       >
         <div className="border-r border-zinc-700">
-          <div className="  h-screen text-white text-lg  ">
+          <div className="  h-auto text-white text-lg  ">
             <div
               className={`flex  mt-10  w-full h-10  items-center cursor-pointer ${
                 activePanel === "admin" ? "bg-zinc-800" : "hover:bg-zinc-800"
@@ -53,8 +53,8 @@ export const Admin = () => {
                 style={{ gridTemplateColumns: "5% 95%" }}
               >
                 <div className="bg-yellow-600 w-2 cursor-pointer h-10  pl-0 "></div>
-                <div className=" pl-10 flex items-center">
-                  <div>
+                <div className=" lg:pl-10 pl-4 flex items-center">
+                  <div className="hidden md:block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -71,7 +71,7 @@ export const Admin = () => {
                     </svg>
                   </div>
                   <div>
-                    <p className=" pl-3 "> Admin</p>
+                    <p className="text-sm md:text-base lg:text-lg  md:pl-3 "> Admin</p>
                   </div>
                 </div>
               </div>
@@ -89,9 +89,9 @@ export const Admin = () => {
                 className="grid grid-flow-col "
                 style={{ gridTemplateColumns: "5% 95%" }}
               >
-                <div className="bg-yellow-600 w-full h-10  pl-0 "></div>
-                <div className=" pl-10 flex items-center">
-                  <div>
+                <div className="bg-yellow-600 w-2 cursor-pointer h-10  pl-0  "></div>
+                <div className="  lg:pl-10 pl-4 flex items-center">
+                  <div className="hidden md:block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -109,7 +109,7 @@ export const Admin = () => {
                   </div>
                   <div>
                     <button>
-                      <p className=" pl-3 ">Patient</p>
+                      <p className="text-sm md:text-base lg:text-lg md:pl-3 ">Patient</p>
                     </button>
                   </div>
                 </div>
@@ -127,9 +127,9 @@ export const Admin = () => {
                 className="grid grid-flow-col "
                 style={{ gridTemplateColumns: "5% 95%" }}
               >
-                <div className="bg-yellow-600 w-full h-10  pl-0 "></div>
-                <div className=" pl-10 flex items-center">
-                  <div>
+                <div className="bg-yellow-600 w-2 cursor-pointer h-10  pl-0  "></div>
+                <div className="  lg:pl-10 pl-4 flex items-center">
+                  <div className="hidden md:block">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -146,9 +146,9 @@ export const Admin = () => {
                     </svg>
                   </div>
                   <div>
-                    <button className="flex items-center">
-                      <p className=" pl-3 ">Meal</p>
-                      <p className="pl-3">Details</p>
+                    <button className="md:flex md:items-center">
+                      <p className="text-sm md:text-base lg:text-lg md:pl-2 lg:pl-3 ">Meal</p>
+                      <p className="text-sm md:text-base lg:text-lg md:pl-2 lg:ml-3">Details</p>
                     </button>
                   </div>
                 </div>
