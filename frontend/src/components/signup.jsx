@@ -72,7 +72,7 @@ export const Signup = () => {
   }
 
   return (
-    <div className="  w-screen h-screen flex justify-center  bg-gradient-to-r from-zinc-900  to-zinc-950 overflow-hidden">
+    <div className="  w-screen h-screen flex justify-center  bg-gradient-to-r from-zinc-900  to-zinc-950 ">
       <Spotlight className="-top-[90px]  left-0 md:-top-3 md:left-44 md:h-[1000px] lg:h-[1400px]"
         fill="white"></Spotlight>
       <div className="sm:w-[400px] w-[360px]  bg-zinc-950 border absolute mt-52 rounded-lg  border-zinc-600 ">
