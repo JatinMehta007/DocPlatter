@@ -4,6 +4,7 @@ import { Input } from "../ui/input";
 import { BACKEND_URL } from "../../config";
 import axios from "axios";
 import { Spinner } from "./skeleton/spinner";
+import { Spotlight } from "../ui/spotLight";
 
 export const Signup = () => {
   const [username, setUsername] = useState("");
@@ -72,7 +73,9 @@ export const Signup = () => {
 
   return (
     <div className="  w-full h-screen flex justify-center  bg-gradient-to-r from-zinc-900  to-zinc-950 ">
-      <div className="w-[400px] bg-zinc-950 border absolute mt-52 rounded-lg  border-zinc-600 ">
+      <Spotlight className="-top-[90px] lg:-top-52 left-0 md:-top-20 md:left-80"
+        fill="white"></Spotlight>
+      <div className="lg:w-[400px] w-[360px]  bg-zinc-950 border absolute mt-52 rounded-lg  border-zinc-600 ">
         <p className="text-white  text-center font-bold tracking-wide mt-2 text-xl">
           Join DocPlatter
         </p>
@@ -82,7 +85,7 @@ export const Signup = () => {
           <button
             onClick={() => navigate("/login")}
             className="text-blue-400  hover:text-blue-600 transition-all duration-200"
-          >
+            >
             Login
           </button>
         </div>
@@ -98,7 +101,7 @@ export const Signup = () => {
                 setUsername(e.target.value);
                 if(userError) setUserError("");
               }}
-            />
+              />
 
   {userError && <p className="text-red-500 mt-1 text-sm">{userError} </p> }
           </p>
@@ -115,7 +118,7 @@ export const Signup = () => {
                 
                 if(emailError) setEmailError("");
               }}
-            />
+              />
         
   {emailError && <p className="text-red-500 mt-1 text-sm">{emailError}</p>}
           </p>
@@ -130,7 +133,7 @@ export const Signup = () => {
                 setPassword(e.target.value);
                 if(passwordError) setPasswordError("");
               }}
-            />
+              />
 
   {passwordError && <p className="text-red-500 mt-1 text-sm">{passwordError}</p>}
           </p>
@@ -142,7 +145,7 @@ export const Signup = () => {
             disabled={loading}
             className="group/btn relative mt-5 block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] border border-t-gray-700 border-b-gray-700 border-r-0 border-l-0 cursor-pointer"
             type="submit"
-          >
+            >
             Sign up →
             <BottomGradient />
           </button>

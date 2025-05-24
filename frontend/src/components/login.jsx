@@ -5,6 +5,8 @@ import { useNavigate } from "react-router";
 import { Spinner } from "./skeleton/spinner";
 import { BottomGradient } from "./signup";
 import { Input } from "../ui/input";
+import { Spotlight } from "../ui/spotLight";
+import { HeroHighlight } from "../ui/highlight";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -60,8 +62,10 @@ export const Login = () => {
   }
 
   return (
-    <div className="  w-full h-screen flex justify-center  bg-gradient-to-r from-zinc-900  to-zinc-950 ">
-      <div className="w-[400px] bg-zinc-950 border absolute mt-52 rounded-lg  border-zinc-600 ">
+     <HeroHighlight containerClassName="bg-zinc-900 dark:bg-zinc-950  overflow-hidden">
+    <div className=" w-full h-screen flex justify-center  bg-gradient-to-r from-zinc-900  to-zinc-950 overflow-hidden ">
+    
+      <div className="lg:w-[400px] w-[360px] bg-zinc-950 border absolute mt-52 rounded-lg  border-zinc-600 ">
         <p className="text-white  text-center font-bold tracking-wide mt-2 text-xl">
           Join DocPlatter
         </p>
@@ -71,7 +75,7 @@ export const Login = () => {
           <button
             onClick={() => navigate("/signup")}
             className="text-blue-400  hover:text-blue-600 transition-all duration-200"
-          >
+            >
             Signup
           </button>
         </div>
@@ -84,7 +88,7 @@ export const Login = () => {
               className=" "
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            />
+              />
           </div>
           <div className="text-white mt-4 font-medium">
             Password
@@ -94,7 +98,7 @@ export const Login = () => {
               className=" "
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
+              />
           </div>
 
           {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
@@ -104,7 +108,7 @@ export const Login = () => {
             disabled={loading}
             className="group/btn relative mt-5 block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset] border border-t-gray-700 border-b-gray-700 border-r-0 border-l-0 cursor-pointer"
             type="submit"
-          >
+            >
             Log in →
             <BottomGradient />
           </button>
@@ -112,5 +116,6 @@ export const Login = () => {
         </div>
       </div>
     </div>
+    </HeroHighlight>
   );
 };
