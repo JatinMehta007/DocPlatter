@@ -59,17 +59,17 @@ export const Record=()=>{
     return(
         <div>
         
-          <div className="text-white m-10  rounded-lg bg-black h-auto ">
-            <p className="font-bold text-4xl text-center pt-10 uppercase">
+          <div className="text-white lg:m-10  rounded-lg bg-black h-full md:h-auto ">
+            <p className="font-bold  lg:text-4xl text-xl text-center pt-10 uppercase">
               Create an Record
             </p>
             
-            <div className="m-10 ml-20 text-base font-medium h-full">
+            <div className="lg:m-10 lg:ml-20 m-4 text-sm md:text-base font-medium h-full">
               <p className="mt-2">Patient</p>
               <input
                 type="text"
                 placeholder="patient name"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={patientName}
                 onChange={(e)=>setPatientName(e.target.value)}
               />
@@ -78,7 +78,7 @@ export const Record=()=>{
               <input
                 type="text"
                 placeholder="disease name"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={diseases}
                 onChange={(e)=>setDiseases(e.target.value)}
               />
@@ -87,7 +87,7 @@ export const Record=()=>{
               <input
                 type="text"
                 placeholder="Allergy name"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={allergies}
                 onChange={(e)=>setAllergies(e.target.value)}
               />
@@ -96,7 +96,7 @@ export const Record=()=>{
               <input
                 type="text"
                 placeholder="Room number"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={roomNumber}
                 onChange={(e)=>setRoomNumber(e.target.value)}
               />
@@ -105,7 +105,7 @@ export const Record=()=>{
               <input
                 type="text"
                 placeholder="Bed name"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={bedNumber}
                 onChange={(e)=>setBedNumber(e.target.value)}
               />
@@ -114,7 +114,7 @@ export const Record=()=>{
               <input
                 type="age"
                 placeholder="DOB"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={age}
                 onChange={(e)=>setAge(e.target.value)}
               />
@@ -123,7 +123,7 @@ export const Record=()=>{
               <input
                 type="text"
                 placeholder="gender"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={gender}
                 onChange={(e)=>setGender(e.target.value)}
               />
@@ -132,13 +132,13 @@ export const Record=()=>{
               <input
                 type="text"
                 placeholder="Contact number"
-                className="bg-zinc-800 text-sm w-full h-9 items-center mt-2 rounded-md pl-5"
+                className="bg-zinc-800 md:text-sm text-xs w-full md:h-9 h-6 items-center mt-2 rounded-md pl-5"
                 value={contact}
                 onChange={(e)=>setContact(e.target.value)}
               />
             </div>
 
-            <div className="text-center mx-auto h-10 w-28  bg-white text-black rounded-md">
+            <div className="text-center mx-auto mt-10 md:mt-0 h-10 w-28  bg-white text-black rounded-md">
               <button onClick={Submit} className="mt-2   font-semibold"  >Add Record</button>
             </div>
             <div className="h-10"></div>
