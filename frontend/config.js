@@ -1,1 +1,1 @@
-export const BACKEND_URL ="postgresql://neondb_owner:MxU1ADCqQ7oJ@ep-tight-meadow-a5wgro3b.us-east-2.aws.neon.tech/neondb?sslmode=require"
+export const BACKEND_URL ="https://heliverse-jatin-backend.vercel.app/"
