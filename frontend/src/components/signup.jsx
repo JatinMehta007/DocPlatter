@@ -72,10 +72,10 @@ export const Signup = () => {
   }
 
   return (
-    <div className="  w-full h-screen flex justify-center  bg-gradient-to-r from-zinc-900  to-zinc-950 ">
-      <Spotlight className="-top-[90px] lg:-top-52 left-0 md:-top-20 md:left-80"
+    <div className="  w-screen h-screen flex justify-center  bg-gradient-to-r from-zinc-900  to-zinc-950 overflow-hidden">
+      <Spotlight className="-top-[90px]  left-0 md:-top-3 md:left-44 md:h-[1000px] lg:h-[1400px]"
         fill="white"></Spotlight>
-      <div className="lg:w-[400px] w-[360px]  bg-zinc-950 border absolute mt-52 rounded-lg  border-zinc-600 ">
+      <div className="sm:w-[400px] w-[360px]  bg-zinc-950 border absolute mt-52 rounded-lg  border-zinc-600 ">
         <p className="text-white  text-center font-bold tracking-wide mt-2 text-xl">
           Join DocPlatter
         </p>
