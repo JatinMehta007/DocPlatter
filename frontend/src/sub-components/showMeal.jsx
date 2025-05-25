@@ -48,8 +48,8 @@ export const ShowMealDetails = ({ patientName }) => {
         }}
         className=""
         >
-    <div className="text-white m-10 rounded-lg  p-6 w-[500px]">
-      <p className="font-bold text-4xl text-center pt-4 mb-8">
+    <div className="text-white md:m-10 rounded-lg  md:p-6 p-2 md:w-[500px]">
+      <p className="font-bold md:text-4xl text-2xl text-center pt-4 mb-8">
         Meal for <span className="text-amber-400 uppercase">{patientName}</span>
       </p>
        
@@ -60,15 +60,15 @@ export const ShowMealDetails = ({ patientName }) => {
             key={meal.id || index}
             className="bg-gray-800 rounded-lg p-4 mb-4 border border-gray-600 "
             >
-              <div className="ml-[400px]  absolute ">
+              <div className="md:ml-[400px] ml-[145px] mt-[-12px]   absolute ">
             <DeleteMeals id={meal.id}/>
           </div>
-            <p className="text-base font-medium  tracking-wider text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Morning : </strong> {meal.morning_meal || "null"}</p>
-            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Date : </strong> {meal.date || "null"}</p>
-            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Evening : </strong> {meal.evening_meal || "null"}</p>
-            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Night : </strong> {meal.night_meal || "null"}</p>
-            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Ingredients : </strong> {meal.ingredients || "null"}</p>
-            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 text-lg tracking-normal ">Instruction : </strong> {meal.instruction || "null"}</p>
+            <p className="text-base font-medium  tracking-wider text-amber-600 uppercase"><strong className="text-amber-400 md:text-lg text-base tracking-normal ">Morning : </strong> {meal.morning_meal || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 md:text-lg text-base tracking-normal ">Date : </strong> {meal.date || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 md:text-lg text-base tracking-normal ">Evening : </strong> {meal.evening_meal || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 md:text-lg text-base tracking-normal ">Night : </strong> {meal.night_meal || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 md:text-lg text-base tracking-normal ">Ingredients : </strong> {meal.ingredients || "null"}</p>
+            <p className="text-base  tracking-wider  text-amber-600 uppercase"><strong className="text-amber-400 md:text-lg text-base tracking-normal ">Instruction : </strong> {meal.instruction || "null"}</p>
           </div>
           )
         })
