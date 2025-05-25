@@ -52,11 +52,11 @@ export const Meal=({patientName})=>{
   return(
         <div>
         
-          <div className="text-white m-10  rounded-lg bg-black h-auto ">
-            <p className="font-bold text-4xl text-center pt-10 uppercase">
+          <div className="text-white lg:m-10   rounded-md bg-black h-auto ">
+            <p className="font-bold lg:text-4xl md:text-2xl text-lg text-center pt-10 uppercase">
               Create an Meal for <span className=" text-yellow-600 ">{patientName}</span>
             </p>
-            <div className="m-10 ml-20 text-base font-medium h-full">
+            <div className="lg:m-10 lg:ml-20 ml-5 text-base font-medium h-full">
             
 
             <p className="mt-2">Date</p>
@@ -117,7 +117,7 @@ export const Meal=({patientName})=>{
 
             </div>
 
-            <div className="text-center mx-auto h-10 w-28  bg-white text-black rounded-md">
+            <div className="text-center mx-auto h-10 w-28 mt-6 lg:mt-0  bg-white text-black rounded-md">
               <button onClick={AddRecord} className="mt-2   font-semibold">Add Record</button>
             </div>
             <div className="h-10"></div>
