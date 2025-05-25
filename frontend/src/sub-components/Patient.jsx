@@ -64,14 +64,14 @@ export const Patient = () => {
                   className="grid grid-flow-col mt-9 group cursor-pointer"
                   style={{ gridTemplateColumns: "1% 98%" }}
                 >
-                  <div className="group-hover:bg-yellow-600 bg-zinc-800 w-[10px] h-14 pl-0"></div>
+                  <div className="xl:group-hover:bg-yellow-600 bg-yellow-600 lg:bg-zinc-800 w-[10px] h-14 pl-0"></div>
                   <div className="w-full flex flex-row">
-                    <div className="md:pl-10 pl-1 h-14 w-full mr-4 uppercase font-bold bg-zinc-800 text-zinc-200 text-sm ">
+                    <div className="md:pl-10 ml-1 xl:ml-0 pl-1 h-14 w-full mr-4 uppercase font-bold bg-zinc-800 text-zinc-200 text-sm ">
                       <p className="normal-case font-light pb-1 mt-1">Patient Name</p>
                       {patient.username}
                     </div>
                     <div key={index} onClick={() => PatientClick(patient.username)} >
-                    <p className="md:ml-20 ml-1 text-zinc-400 md:p-2 p-1 font-semibold text-xs h-14 md:text-sm bg-zinc-800 cursor-pointer hover:text-white">
+                    <p className="xl:ml-20  ml-1  text-zinc-400 md:p-2 p-1 font-semibold text-xs h-14 md:text-sm bg-zinc-800 cursor-pointer hover:text-white">
                       Click to add the meal
                     </p>
                   </div>
