@@ -87,9 +87,9 @@ export const MealDetails = () => {
         <div className="p-4">
           <button
             onClick={handleBack}
-            className="mb-4 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-500 flex justify-center items-center"
+            className="mb-4 px-4  bg-yellow-600 text-white rounded hover:bg-yellow-500 flex justify-center items-center"
           >
-             <span className="text-lg">←</span><span className="md:block md:invisible hidden">d</span><span className="hidden md:flex">Back to Patient List</span>
+             <span className="text-lg font-bold">←</span><span className="md:block md:invisible hidden">d</span><span className="hidden md:flex">Back to Patient List</span>
           </button>
           <ShowMealDetails patientName={selectedPatientName} />
         </div>
