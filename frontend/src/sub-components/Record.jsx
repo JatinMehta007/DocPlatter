@@ -59,7 +59,7 @@ export const Record=()=>{
     return(
         <div>
         
-          <div className="text-white lg:m-10  rounded-lg bg-black h-full md:h-auto ">
+          <div className="text-white md:m-10  rounded-lg bg-black h-full md:h-auto ">
             <p className="font-bold  md:text-4xl text-xl text-center pt-10 uppercase">
               Create an Record
             </p>
