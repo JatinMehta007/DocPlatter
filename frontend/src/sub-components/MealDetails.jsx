@@ -20,7 +20,7 @@ export const MealDetails = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen overflow-hidden">
       {!addMeal ? (
         <div>
           <p className="md:text-4xl text-xl md:m-8 m-2  text-gray-300 font-semibold">
@@ -58,9 +58,9 @@ export const MealDetails = () => {
                     className="grid grid-flow-col mt-9 group cursor-pointer"
                     style={{ gridTemplateColumns: "1% 98%" }}
                   >
-                    <div className="group-hover:bg-yellow-600 bg-zinc-800 w-[10px] h-14 pl-0" />
+                    <div className="xl:group-hover:bg-yellow-600 bg-yellow-600 lg:bg-zinc-800 w-[10px] h-14 pl-0" />
                     <div className="w-full flex flex-row">
-                      <div className="pl-10 h-14 w-full uppercase font-bold bg-zinc-800 text-zinc-200 text-sm">
+                      <div className="md:pl-10 ml-1 xl:ml-0 pl-1 h-14 w-full mr-4 uppercase font-bold bg-zinc-800 text-zinc-200 text-sm">
                         <p className="normal-case font-light pb-1 mt-1">
                           Patient Details
                         </p>
@@ -69,11 +69,11 @@ export const MealDetails = () => {
                       <div
                         onClick={() => handlePatientClick(patient.patientName)}
                       >
-                        <p className="ml-10 text-zinc-400 p-2 font-semibold text-sm bg-zinc-800 cursor-pointer hover:text-white">
+                        <p className="xl:ml-10 ml-1 h-14 text-zinc-400 md:p-2 p-1  font-semibold md:text-sm text-xs bg-zinc-800 cursor-pointer hover:text-white">
                           Click here to see the meal
                         </p>
                       </div>
-                      <div className="h-14 w-14 ml-5">
+                      <div className="md:h-14  md:w-14 h-18 w-18 md:ml-5">
                         <DeletePatient id={patient.id} />
                       </div>
                     </div>
@@ -87,9 +87,9 @@ export const MealDetails = () => {
         <div className="p-4">
           <button
             onClick={handleBack}
-            className="mb-4 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-500"
+            className="mb-4 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-500 flex justify-center items-center"
           >
-            ← Back to Patient List
+             ←<span className="md:block md:invisible hidden">d</span><span className="hidden md:flex">Back to Patient List</span>
           </button>
           <ShowMealDetails patientName={selectedPatientName} />
         </div>
