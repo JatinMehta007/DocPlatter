@@ -20,10 +20,10 @@ export const MealDetails = () => {
   };
 
   return (
-    <div>
+    <div className="h-screen">
       {!addMeal ? (
         <div>
-          <p className="text-4xl m-8 text-gray-300 font-semibold">Patient meal Details</p>
+          <p className="md:text-4xl text-xl md:m-8 m-2  text-gray-300 font-semibold">Patient meal Details</p>
           <hr className="border-gray-600" />
 
           {loading ? (
