@@ -92,7 +92,7 @@ export const Patient = () => {
         
         <div className="md:p-4">
         <div className="p-4">
-          <button onClick={handleBack} className="mb-1 py-1 md:w-52 w-8 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-bold flex pl-2">
+          <button onClick={handleBack} className="mb-1 py-1 md:w-52 w-8 bg-yellow-600 text-white rounded hover:bg-yellow-700 font-bold flex justify-center items-center ">
             ←<span className="hidden md:flex"> Back to Patient List</span>
           </button>
         </div>
