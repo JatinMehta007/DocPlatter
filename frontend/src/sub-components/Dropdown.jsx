@@ -1,31 +1,23 @@
 import { useNavigate } from "react-router-dom";
-import { useToggleFunction } from "../hooks/useToogleFunction"; 
 import crown from "../image/crown.webp";
 
-export const Dropdown =()=>{
-    const {activeDropdownStatus, handleDropdownToggle } = useToggleFunction();
-  
-    const navigate = useNavigate();
-    const logout = () => {
-        localStorage.clear();
-        navigate(`/`);
-      };
-      
-    return(
-        <div>
-        <button onClick={handleDropdownToggle}>
-        <img src={crown} alt="" className="h-6 mt-5 mr-10 cursor-pointer" />
-          </button>
-        
-        {activeDropdownStatus && (
-          <>
-          <div className="absolute top-16 right-8 bg-white  shadow-md rounded-md z-[100]">
-            
-          <div className="p-3">
+export const Dropdown = () => {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear();
+    navigate(`/`);
+  };
+
+  return (
+    <div className="relative group">
+      <img src={crown} alt="Crown Icon" className="h-6 mt-5 mr-10 cursor-pointer" />
+
+      <div className="absolute top-14 right-4 bg-white shadow-md rounded-md z-[100] hidden group-hover:block">
+        <div className="p-3">
           <button
             role="menuitem"
             onClick={logout}
-            className="  flex w-full cursor-pointer  items-center gap-2 rounded-md  px-6 font-sans text-sm antialiased font-normal  text-inherit hover:text-slate-500"
+            className="flex w-full cursor-pointer items-center gap-2 rounded-md px-6 font-sans text-sm antialiased font-normal text-inherit hover:text-slate-500"
           >
             <svg
               width="16"
@@ -41,16 +33,10 @@ export const Dropdown =()=>{
                 fill="#90A4AE"
               ></path>
             </svg>
-            <p className="">
-              logout
-            </p>
+            <p>Logout</p>
           </button>
         </div>
-
-        </div>
-          </>
-        )}
-        </div>
-
-    )
-}
+      </div>
+    </div>
+  );
+};
