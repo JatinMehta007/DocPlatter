@@ -148,7 +148,7 @@ export const Admin = () => {
                   <div>
                     <button className="md:flex md:items-center">
                       <p className="text-sm md:text-base lg:text-lg md:pl-2 lg:pl-3 ">Meal</p>
-                      <p className="text-sm md:text-base lg:text-lg md:pl-2 lg:ml-3">Details</p>
+                      <p className="text-sm md:text-base lg:text-lg md:pl-2 xl:ml-0">Details</p>
                     </button>
                   </div>
                 </div>
