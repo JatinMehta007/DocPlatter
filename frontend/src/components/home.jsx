@@ -3,8 +3,7 @@ import { BackgroundBeamsWithCollision } from "../ui/beams";
 import icon from "../image/font.png";
 import image from "../image/image.png";
 import github from "../image/github.png";
-import linkedin from "../image/linkedin.png";import { WobbleCard } from "../ui/wobble_card";
-;
+import linkedin from "../image/linkedin.png";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -54,7 +53,7 @@ export const Home = () => {
                 </p>
               </div>
               <div className="xl:grid-cols-2 xl:absolute xl:h-[400px] xl:w-[500px] 2xl:ml-[720px] xl:ml-[670px]  w-screen xl:mt-28  ">
-                <img src={image} alt="" className="ls:rounded-3xl" />
+                <img src={image} alt="" className="ls:rounded-xl" />
               </div>
             </div>
           </div>
