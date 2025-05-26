@@ -53,7 +53,7 @@ export const Home = () => {
                 </p>
               </div>
               <div className="xl:grid-cols-2 xl:absolute xl:h-[400px] xl:w-[500px] 2xl:ml-[720px] xl:ml-[670px]  w-screen xl:mt-28  ">
-                <img src={image} alt="" className="ls:rounded-xl" />
+                <img src={image} alt="" className="ls:rounded-3xl" />
               </div>
             </div>
           </div>
