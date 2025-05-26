@@ -33,7 +33,7 @@ export const Home = () => {
         {/* welcome to heliverse */}
         <div className="text-white md:pt-40 pt-20">
           <div className="xl:text-8xl lg:text-7xl text-5xl md:text-6xl  text-center flex justify-center items-center  ">
-            <p className="xl:ml-5 text-center   absolute md:mr-[320px] lg:mr-[450px] xl:mr-[500px] xl:mt-3 md:mt-1 lg:mt-[10px] tracking-wider font-extrabold">
+            <p className="xl:ml-5 text-center   absolute md:mr-[320px] lg:mr-[450px] xl:mr-[500px] xl:mt-3 md:mt-1 lg:mt-[10px] tracking-wider font-extrabold ">
               Welcome to
             </p>
             <img src={icon} alt="font" className="xl:h-[180px] md:mt-0 md:h-[110px] lg:h-[148px] md:ml-[307px] lg:ml-[315px]  xl:ml-[500px] h-[110px] mt-20   " />
@@ -42,7 +42,7 @@ export const Home = () => {
           <div className="">
             <div className="xl:grid xl:grid-flow-col md:mt-10  bg-stone-900 xl:w-[1100px] xl:h-[500px] xl:ml-24 xl:rounded-3xl  ">
               <div className="xl:grid-cols-1 xl:w-[65%] p-10">
-                <p className="xl:text-6xl md:text-6xl text-4xl text-center xl:text-left font-extrabold tracking-wider pt-5 xl:ml-20  ">
+                <p className="xl:text-6xl md:text-6xl text-4xl text-center xl:text-left font-extrabold tracking-wider pt-5 xl:ml-20 bg-gradient-to-br from-neutral-100 to-neutral-500 bg-clip-text text-transparent ">
                   Simple, Smart, and Reliable Hospital Management
                   <span className="xl:text-2xl md:text-2xl lg:text-3xl text-base block font-normal mt-6">
                     Add patients, assign meals, and manage records — all in one
@@ -60,7 +60,7 @@ export const Home = () => {
 
         <section className=" text-white py-16">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-3xl sm:text-6xl font-bold text-center mb-12">
+            <h2 className="text-3xl sm:text-6xl font-bold text-center mb-12  bg-gradient-to-br from-neutral-100 to-neutral-500 bg-clip-text text-transparent">
               Key Features of DocPlatter
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
