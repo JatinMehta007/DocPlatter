@@ -3,7 +3,8 @@ import { BackgroundBeamsWithCollision } from "../ui/beams";
 import icon from "../image/font.png";
 import image from "../image/image.png";
 import github from "../image/github.png";
-import linkedin from "../image/linkedin.png";;
+import linkedin from "../image/linkedin.png";import { WobbleCard } from "../ui/wobble_card";
+;
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-900  to-zinc-950 overflow-hidden">
+    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-950 via-zinc-900  to-zinc-950 overflow-hidden">
       {/* // navbar */}
       <BackgroundBeamsWithCollision>
         <div className="flex items-center justify-center relative">
@@ -40,8 +41,9 @@ export const Home = () => {
           </div>
 
           <div className="">
-            <div className="xl:grid xl:grid-flow-col md:mt-10  bg-stone-900 xl:w-[1100px] xl:h-[500px] xl:ml-24 xl:rounded-3xl  ">
+            <div className="xl:grid xl:grid-flow-col md:mt-10  bg-gradient-to-b from-black to-stone-900 xl:w-[1100px] xl:h-[500px] xl:ml-24 xl:rounded-3xl  ">
               <div className="xl:grid-cols-1 xl:w-[65%] p-10">
+               
                 <p className="xl:text-6xl md:text-6xl text-4xl text-center xl:text-left font-extrabold tracking-wider pt-5 xl:ml-20 bg-gradient-to-br from-neutral-100 to-neutral-500 bg-clip-text text-transparent ">
                   Simple, Smart, and Reliable Hospital Management
                   <span className="xl:text-2xl md:text-2xl lg:text-3xl text-base block font-normal mt-6">
