@@ -13,7 +13,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-900 via-zinc-900  to-zinc-950 overflow-hidden">
+    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-950 via-zinc-900  to-zinc-950 overflow-hidden">
       {/* // navbar */}
       <BackgroundBeamsWithCollision>
         <div className="flex items-center justify-center relative">
