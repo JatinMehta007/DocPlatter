@@ -13,7 +13,7 @@ export const Home = () => {
   };
 
   return (
-    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-950 via-zinc-900  to-zinc-950 overflow-hidden">
+    <div className="w-screen min-h-screen   bg-gradient-to-r from-zinc-900 via-zinc-900  to-zinc-950 overflow-hidden">
       {/* // navbar */}
       <BackgroundBeamsWithCollision>
         <div className="flex items-center justify-center relative">
@@ -40,10 +40,10 @@ export const Home = () => {
           </div>
 
           <div className="">
-            <div className="xl:grid xl:grid-flow-col md:mt-10  bg-gradient-to-b from-black to-stone-900 xl:w-[1100px] xl:h-[500px] xl:ml-24 xl:rounded-3xl  ">
+            <div className="xl:grid xl:grid-flow-col md:mt-10  bg-gradient-to-b  from-black to-stone-900  xl:w-[1100px] xl:h-[500px] xl:ml-24 xl:rounded-3xl  ">
               <div className="xl:grid-cols-1 xl:w-[65%] p-10">
                
-                <p className="xl:text-6xl md:text-6xl text-4xl text-center xl:text-left font-extrabold tracking-wider pt-5 xl:ml-20 bg-gradient-to-br from-neutral-100 to-neutral-500 bg-clip-text text-transparent ">
+                <p className="xl:text-6xl md:text-6xl text-4xl text-center xl:text-left font-extrabold tracking-wider pt-5 xl:ml-20  bg-gradient-to-br from-neutral-100 to-neutral-500 bg-clip-text text-transparent ">
                   Simple, Smart, and Reliable Hospital Management
                   <span className="xl:text-2xl md:text-2xl lg:text-3xl text-base block font-normal mt-6">
                     Add patients, assign meals, and manage records — all in one
@@ -53,7 +53,7 @@ export const Home = () => {
                 </p>
               </div>
               <div className="xl:grid-cols-2 xl:absolute xl:h-[400px] xl:w-[500px] 2xl:ml-[720px] xl:ml-[670px]  w-screen xl:mt-28  ">
-                <img src={image} alt="" className="ls:rounded-3xl" />
+                <img src={image} alt="" className="ls:rounded-xl" />
               </div>
             </div>
           </div>
