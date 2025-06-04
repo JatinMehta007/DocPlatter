@@ -12,6 +12,7 @@ import { MealDetails } from "./sub-components/MealDetails"
 import { FullDetails } from "./sub-components/FullDetails"
 import { Login } from "./components/login"
 import { ProtectedRoute } from "./sub-components/ProtectedRoute"
+import { Toaster } from "react-hot-toast"
 
 function App() {
 
@@ -29,6 +30,36 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
       </Routes>
       </BrowserRouter>
+      
+      <Toaster
+         position="top-center"
+          toastOptions={{
+         success: {
+          duration: 3000,
+             style: {
+              border: '1px solid #008000',
+              padding: '16px',
+             color: '#008000',
+      },
+      iconTheme: {
+        primary: '#008000',
+        secondary: '#FFFAEE',
+      },
+    },
+    error: {
+      duration: 3000,
+      style: {
+        border: '1px solid #ff0000',
+        padding: '16px',
+        color: '#ff0000',
+      },
+      iconTheme: {
+        primary: '#ff0000',
+        secondary: '#FFFAEE',
+      },
+    },
+  }}
+/>
     </>
   )
 }
