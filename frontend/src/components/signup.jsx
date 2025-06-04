@@ -5,6 +5,7 @@ import { BACKEND_URL } from "../../config";
 import axios from "axios";
 import { Spinner } from "./skeleton/spinner";
 import { Spotlight } from "../ui/spotLight";
+import toast from "react-hot-toast";
 
 export const Signup = () => {
   const [username, setUsername] = useState("");
@@ -50,6 +51,24 @@ export const Signup = () => {
       }
     } catch (err) {
       console.error("Login error:", err);
+      const message = err?.response?.data?.message;
+
+      if (message === "User already exist with this email") {
+        toast.error("User already exists with this email", {
+          autoClose: 3000,
+          style: {
+            border: '1px solid #cc0000',
+            padding: '16px',
+            color: '#cc0000',
+          },
+          iconTheme: {
+            primary: '#cc0000',
+            secondary: '#FFFAEE',
+          },
+        });
+        return;
+      }
+
       if (err.response?.data?.errors) {
         const { email , password,username } = err.response.data.errors;
         if(username) setUserError(username[0]);
