@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BACKEND_URL } from "../../../config";
 import axios from "axios";
 import { Spinner } from "./spinner";
+import { toast } from "react-hot-toast";
 
 export const DeleteMeals=({id}: {id :String})=>{
 
@@ -22,12 +23,14 @@ export const DeleteMeals=({id}: {id :String})=>{
             },
           });
     
-          alert("Patient Meal deleted successfully");
-          window.location.reload();
+          toast.success("Patient Meal deleted successfully");
+          setTimeout(()=>{
+            window.location.reload();
+          },2000)
         } catch (error: any) {
           console.error("Error deleting the patientmeal:", error);
-          alert(
-            error?.response?.data?.message ||
+          toast.error(
+            error?.response?.data?.message || error.message || 
             "Failed to delete patient meal. Please try again."
           );
         } finally{
