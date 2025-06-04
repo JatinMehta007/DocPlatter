@@ -3,6 +3,7 @@ import { useState } from "react";
 import { BACKEND_URL } from "../../../config";
 import { AnimatedTooltip } from "../../ui/popup";
 import { Spinner } from "./spinner";
+import { toast } from "react-hot-toast";
 
 
 export const DeletePatient = ({ id }: { id: Number }) => {
@@ -22,11 +23,15 @@ export const DeletePatient = ({ id }: { id: Number }) => {
         },
       });
 
-      alert("Patient deleted successfully");
-      window.location.reload();
+      toast.success("Patient deleted successfully");
+
+      setTimeout(()=>{
+        window.location.reload();
+      },1000);
+
     } catch (error: any) {
       console.error("Error deleting the patient:", error);
-      alert(
+      toast.error(
         error?.response?.data?.message ||
         "Failed to delete patient. Please try again."
       );
