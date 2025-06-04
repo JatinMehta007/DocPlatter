@@ -3,6 +3,7 @@ import { Admin } from "../components/Admin"
 import  axios  from "axios"
 import { BACKEND_URL } from "../../config";
 import { Spinner } from "../components/skeleton/spinner";
+import { toast }  from "react-hot-toast";
 
 export const Record=()=>{
 
@@ -38,11 +39,16 @@ export const Record=()=>{
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Record added successfully");
-      window.location.reload();
+      
+      toast.success("Record added successfully");
+
+      setTimeout(()=>{
+       window.location.reload();
+      },2000);
+
     } catch(error){
       console.error("Error" , error);
-      alert("username already exist! ");
+      toast.error("username already exist! ");
     } finally{
       setIsLoading(false);
     }
