@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react"
 import { BACKEND_URL } from "../../config";
 import { Spinner } from "../components/skeleton/spinner";
+import { toast } from "react-hot-toast";
 
 export const Meal=({patientName})=>{
   const [morningMeal , setMorningMeal] = useState("");
@@ -32,11 +33,16 @@ export const Meal=({patientName})=>{
         }
       });
         console.log("Meal data added", response.data);
-        alert(`Meal record added for ${patientName}`);
-        window.location.reload();
+
+        toast.success(`Meal record added for ${patientName}`);
+
+        setTimeout(()=>{
+          window.location.reload();
+        },2000);
+
     } catch (error){
       console.log("Error adding meal data", error);
-      alert("Failed to add the meal")
+      toast.error("Failed to add the meal");
     } finally{
       setIsLoading(false);
     }
