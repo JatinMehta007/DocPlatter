@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import crown from "../image/crown.webp";
+import { BACKEND_URL } from "../../config";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export const Dropdown = () => {
   const navigate = useNavigate();
@@ -8,10 +11,29 @@ export const Dropdown = () => {
     navigate(`/`);
   };
 
+  const [name, setName] = useState();
+
+    useEffect(()=>{
+      axios.get(`${BACKEND_URL}/api/v1/user/userinfo`,{
+        headers:{
+          Authorization:`Bearer ${localStorage.getItem("token")}`
+        },
+         withCredentials: true
+      })
+      .then(res => {
+        setName(res.data.name);
+      })
+      .catch(err => console.error("Error fetching user info: ",err));
+    },[])
+  
   return (
     <div className="relative group">
-      <img src={crown} alt="Crown Icon" className="h-6 mt-5 mr-10 cursor-pointer" />
-
+      <div className="flex justify-center items-center pr-12">
+      <img src={crown} alt="Crown Icon" className="h-6 mt-5 mr-4 cursor-pointer" />
+      <div className="text-slate-300 mt-5 pr-4 font-semibold  tracking-wider font-sans">
+      {name}
+      </div>
+      </div>
       <div className="absolute top-14 right-4 bg-white shadow-md rounded-md z-[100] hidden group-hover:block">
         <div className="p-3">
           <button
