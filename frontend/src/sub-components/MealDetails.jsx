@@ -23,7 +23,7 @@ export const MealDetails = () => {
     <div className="h-screen overflow-hidden">
       {!addMeal ? (
         <div>
-          <p className="md:text-4xl text-xl md:m-8 m-2  text-gray-300 font-semibold">
+          <p className="md:text-4xl text-xl md:m-8 m-2 font-sans tracking-wide text-gray-300 font-semibold">
             Patient meal Details
           </p>
           <hr className="border-gray-600" />
@@ -58,9 +58,9 @@ export const MealDetails = () => {
                     className="grid grid-flow-col mt-9 group cursor-pointer"
                     style={{ gridTemplateColumns: "1% 98%" }}
                   >
-                    <div className="xl:group-hover:bg-yellow-600 bg-yellow-600 lg:bg-zinc-800 w-[10px] h-14 pl-0" />
+                    <div className="xl:group-hover:bg-yellow-600 bg-yellow-600 lg:bg-zinc-600 w-[10px] h-14 pl-0" />
                     <div className="w-full flex flex-row">
-                      <div className="md:pl-10 ml-1 xl:ml-0 pl-1 h-14 w-full mr-4 uppercase font-bold bg-zinc-800 text-zinc-200 text-sm">
+                      <div className="md:pl-10 ml-1 xl:ml-0 pl-1 h-14 w-full mr-4 uppercase font-bold bg-gradient-to-r from-zinc-800 to-zinc-950 text-zinc-200 text-sm">
                         <p className="normal-case font-light pb-1 mt-1">
                           Patient Details
                         </p>
@@ -69,7 +69,7 @@ export const MealDetails = () => {
                       <div
                         onClick={() => handlePatientClick(patient.patientName)}
                       >
-                        <p className="xl:ml-10 ml-1 h-14 text-zinc-400 md:p-2 p-1  font-semibold md:text-sm text-xs bg-zinc-800 cursor-pointer hover:text-white">
+                        <p className="xl:ml-10 ml-1 h-14 text-zinc-400 md:p-2 p-1  font-semibold md:text-sm text-xs bg-gradient-to-l from-zinc-800 to-zinc-950 cursor-pointer hover:text-white">
                           Click here to see the meal
                         </p>
                       </div>
