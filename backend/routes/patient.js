@@ -55,6 +55,26 @@ router.post("/mydata", authenticateToken, async (req, res) => {
   }
 });
 
+router.get("/userinfo", authenticateToken, async (req, res) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.userId },
+      select: { username: true } // only fetch the username
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({
+      message: "User fetched successfully",
+      name: user.username
+    });
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 router.post("/create",async(req,res)=>{ 
     try{
