@@ -7,6 +7,7 @@ import { BottomGradient } from "./signup";
 import { Input } from "../ui/input";
 import { Spotlight } from "../ui/spotLight";
 import { HeroHighlight } from "../ui/highlight";
+import { Eye, EyeOff } from "lucide-react"; 
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,6 +16,7 @@ export const Login = () => {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -90,15 +92,24 @@ export const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               />
           </div>
+         
           <div className="text-white mt-4 font-medium">
             Password
-            <Input
-              type="password"
-              placeholder="••••••••••"
-              className=" "
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+            <div className="relative">
+              <Input
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••••"
+                className="pr-10"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
+              <span
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"
+                onClick={() => setShowPassword((prev) => !prev)}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </span>
+            </div>
           </div>
 
           {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
