@@ -103,8 +103,8 @@ export const Home = () => {
           <div className="flex justify-between ">
           <div className="xl:mx-24 mt-8 md:mt-0">
           <img src={icon} alt="font" className="xl:h-[80px] md:h-[60px] hidden md:block  lg:mt-10 md:mt-5   " />
-          <p className="text-white ml-7 xl:ml-[90px] md:ml-[70px]">A product by <a href="https://github.com/JatinMehta007"><span className="text-yellow-500"> Jatin Mehta</span></a></p>
-          <p className="text-white ml-7 xl:ml-[90px] mt-2 md:ml-[70px]  mb-16">A product by <a href="https://twitter.com/JatinMehta35630"> <span className="text-yellow-500"> @JatinMehta35630 </span></a></p>
+          <p className="text-gray-500 text-sm ml-7 xl:ml-[90px] md:ml-[70px]">A product by <a href="https://github.com/JatinMehta007"><span className="text-yellow-500"> Jatin Mehta</span></a></p>
+          <p className="text-gray-500 text-sm ml-7 xl:ml-[90px] mt-2 md:ml-[70px]  mb-16">Building in public <a href="https://twitter.com/JatinMehta35630"> <span className="text-yellow-500"> @JatinMehta35630 </span></a></p>
           </div>
 
           <div className="xl:mx-32 mx-8 ">
